@@ -1,37 +1,24 @@
 import React from 'react';
-import Foundation from 'react-foundation';
-
 
 const Navbar = () => (
-  <nav className="top-bar" data-topbar role="navigation">
-    <ul className="title-area">
-      <li className="name">
-        <h1><a href="#">My Site</a></h1>
-      </li>
-
-     {/* Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone */}
-     <li className="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
-
-    <section className="top-bar-section">
-    {/* Right Nav Section */}
-    <ul className="right">
-      <li className="active"><a href="#">Right Button Active</a></li>
-      <li className="has-dropdown">
-        <a href="#">Right Button Dropdown</a>
-        <ul className="dropdown">
-          <li><a href="#">First link in dropdown</a></li>
-          <li className="active"><a href="#">Active link in dropdown</a></li>
-        </ul>
-      </li>
-    </ul>
-
-    {/* Left Nav Section */}
-    <ul className="left">
-      <li><a href="#">Left Nav Button</a></li>
-    </ul>
-  </section>
-  </nav>
+  <div className="top-bar">
+    <div className="top-bar-left">
+      <ul className="menu">
+        <li className="menu-text">Payroll</li>
+        <li>
+          <a href="#">Organizations</a>
+        </li>
+        <li><a href="#">Employees</a></li>
+        <li><a href="#">Reports</a></li>
+      </ul>
+    </div>
+    <div className="top-bar-right">
+      <ul className="menu">
+        <li><input type="search" placeholder="Search" /></li>
+        <li><button type="button" className="button">Search</button></li>
+      </ul>
+    </div>
+  </div>
 );
 
 export default Navbar;

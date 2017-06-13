@@ -19,7 +19,7 @@ export default class OrganizationList extends React.Component {
       });
     };
     return(
-      <div>
+      <div className="row">
         {renderOrganizations()}
       </div>
     );
@@ -30,10 +30,10 @@ OrganizationList.defaultProps = {
   organizations: [
     {
       id: 1,
-      name: 'aaaaaa'
+      name: 'EML Consultants'
     },{
       id: 2,
-      name: 'bbbb'
+      name: 'ABC Company'
     }
   ]
 };

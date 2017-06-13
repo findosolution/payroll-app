@@ -5,13 +5,17 @@ import OrganizationApp from 'OrganizationApp';
 import User from 'User';
 import Login from 'Login';
 import App from 'App';
+import Main from 'Main';
 
 export default (
   <Router history={hashHistory}>
     <Route path="/" component={App} >
-      <Route path="/organizations" component={OrganizationApp}/>
-      <Route path="/user" component={User}/>
       <IndexRoute component={Login}/>
+      <Route path="/main" component={Main} >
+        <Route path="organizations" component={OrganizationApp}/>
+        <Route path="user" component={User}/>
+        <IndexRoute component={OrganizationApp}/>
+      </Route>
     </Route>
   </Router>
 );

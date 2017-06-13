@@ -5,7 +5,6 @@ export default class Organization extends React.Component {
     var {id, name} = this.props;
     return(
       <div>
-        <p>{id}</p>
         <p>{name}</p>
       </div>
     );
