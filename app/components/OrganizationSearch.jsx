@@ -24,14 +24,8 @@ export class OrganizationSearch extends React.Component {
   }
 };
 
-/*export default connect((state) => {
-  return(
-    searchOrganization : state.searchOrganization
-  );
-})(OrganizationSearch);*/
-
-export default connect(
-  (state) => {
-    return state;
-  }
-)(OrganizationSearch);
+export default connect((state) => {
+  return {
+    searchOrganization: state.searchOrganization
+  };
+})(OrganizationSearch);

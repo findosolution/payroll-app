@@ -4,6 +4,7 @@ var {connect} = require('react-redux');
 import * as actions from 'actions';
 import Organization from 'Organization';
 import * as OrganizationAPI from 'OrganizationAPI';
+import * as OrganizationUtil from 'OrganizationUtil';
 
 export class OrganizationList extends React.Component {
   constructor (props) {
@@ -27,9 +28,11 @@ export class OrganizationList extends React.Component {
   }
 
   render () {
-    var {organizations} = this.props;
     var renderOrganizations = () => {
-      return organizations.map((organization) => {
+      var {organizations, searchOrganization} = this.props;
+
+      var filteredOrganizations = OrganizationUtil.filterOrganization(organizations, searchOrganization);
+      return filteredOrganizations.map((organization) => {
         return (
           <Organization key={organization.id} {...organization}/>
         );
@@ -75,6 +78,7 @@ OrganizationList.defaultProps = {
 
 export default connect((state) => {
   return {
-    organizations: state.organizations
+    organizations: state.organizations,
+    searchOrganization: state.searchOrganization
   };
 })(OrganizationList);
