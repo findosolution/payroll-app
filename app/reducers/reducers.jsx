@@ -6,3 +6,15 @@ export var searchOrganizationReducer = (state = '', action) => {
       return state;
   };
 };
+
+export var organizationReducer = (state = [], action) => {
+  switch(action.type) {
+    case 'ADD_ORGANIZATIONS':
+      return [
+        ...state,
+        ...action.organizations
+      ];
+    default:
+      return state;
+  };
+}

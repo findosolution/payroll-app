@@ -1,11 +1,12 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import {searchOrganizationReducer} from 'reducers';
+import {searchOrganizationReducer, organizationReducer} from 'reducers';
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
-    searchOrganization: searchOrganizationReducer
+    searchOrganization: searchOrganizationReducer,
+    organizations: organizationReducer
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(

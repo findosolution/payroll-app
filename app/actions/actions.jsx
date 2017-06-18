@@ -4,3 +4,10 @@ export var setSearchOrganization = (searchOrganization) => {
     searchOrganization
   };
 };
+
+export var addOrganizations = (organizations) => {
+  return {
+    type: 'ADD_ORGANIZATIONS',
+    organizations
+  };
+};

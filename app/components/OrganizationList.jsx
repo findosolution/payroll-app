@@ -1,14 +1,31 @@
 import React from 'react';
+var {connect} = require('react-redux');
 
+import * as actions from 'actions';
 import Organization from 'Organization';
+import * as OrganizationAPI from 'OrganizationAPI';
 
-export default class OrganizationList extends React.Component {
+export class OrganizationList extends React.Component {
   constructor (props) {
     super(props);
+    // we better call this inside componentDidMount() ???
+    var organizations = OrganizationAPI.getOrganizations();
+    var {dispatch} = props;
+    dispatch(actions.addOrganizations(organizations));
     this.state = {
-      organizations: props.organizations
+      organizations
     };
   }
+
+  componentDidMount() {
+    /*OrganizationAPI.getOrganizations().then(function(organizations) {
+      this.setState({
+        organizations: organizations
+      });
+    }, function(e) {
+    });*/
+  }
+
   render () {
     var {organizations} = this.props;
     var renderOrganizations = () => {
@@ -55,3 +72,9 @@ OrganizationList.defaultProps = {
     }
   ]
 };
+
+export default connect((state) => {
+  return {
+    organizations: state.organizations
+  };
+})(OrganizationList);
