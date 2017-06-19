@@ -14,6 +14,11 @@ export var organizationReducer = (state = [], action) => {
         ...state,
         ...action.organizations
       ];
+    case 'ADD_ORGANIZATION':
+      return [
+        ...state,
+        action.organization
+      ];
     default:
       return state;
   };
