@@ -50,9 +50,7 @@ var Organization = {
 
          });
       });
-      //return db.query("Insert into organization values(?,?,?,?,?)",[Organization.did,Organization.Name,Organization.Code,Organization.AddressDID,Organization.Active],callback);
     },
-
     deleteTask:function(did,callback){
       return db.query("delete from organization where did=?",[did],callback);
      },
