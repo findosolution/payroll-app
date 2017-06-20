@@ -11,3 +11,10 @@ export var addOrganizations = (organizations) => {
     organizations
   };
 };
+
+export var addOrganization = (organization) => {
+  return {
+    type: 'ADD_ORGANIZATION',
+    organization
+  };
+};
