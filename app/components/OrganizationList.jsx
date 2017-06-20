@@ -3,28 +3,16 @@ var {connect} = require('react-redux');
 
 import * as actions from 'actions';
 import Organization from 'Organization';
-import * as OrganizationAPI from 'OrganizationAPI';
 import * as OrganizationUtil from 'OrganizationUtil';
 
 export class OrganizationList extends React.Component {
   constructor (props) {
     super(props);
-    // we better call this inside componentDidMount() ???
-    var organizations = OrganizationAPI.getOrganizations();
-    var {dispatch} = props;
-    dispatch(actions.addOrganizations(organizations));
-    this.state = {
-      organizations
-    };
   }
 
   componentDidMount() {
-    /*OrganizationAPI.getOrganizations().then(function(organizations) {
-      this.setState({
-        organizations: organizations
-      });
-    }, function(e) {
-    });*/
+    var {dispatch} = this.props;
+    dispatch(actions.startAddOrganizations());
   }
 
   render () {
