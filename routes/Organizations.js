@@ -4,11 +4,9 @@ var Organization=require('../models/Organization');
 
 router.get('/:id?',function(req,res,next){
 
-  if(req.params.id !="") {
+  if(req.params.id !='Orgs') {
 
-     Organization.getTaskById(req.params.id,function(err,rows){
-
-     console.log('inside getTaskById' + req.params.id);
+     Organization.getOrganizationById(req.params.id,function(err,rows){
 
      if(err)
        {
@@ -21,8 +19,8 @@ router.get('/:id?',function(req,res,next){
 
    } else {
 
-     Organization.getAllTasks(function(err,rows){
-       console.log('inside getAllTasks');
+     Organization.getAllOrganizations(function(err,rows){
+
         if(err)
         {
             res.json(err);
@@ -35,7 +33,7 @@ router.get('/:id?',function(req,res,next){
  });
  router.post('/',function(req,res,next){
 
-  Organization.addTask(req.body,function(err,count){
+  Organization.addOrganization(req.body,function(err,count){
       if(err)
       {
         res.json(err);
@@ -47,7 +45,7 @@ router.get('/:id?',function(req,res,next){
 
  router.delete('/:id',function(req,res,next){
 
-  Organization.deleteTask(req.params.id,function(err,count){
+  Organization.deleteOrganization(req.params.id,function(err,count){
 
     if(err)
     {
@@ -61,7 +59,7 @@ router.get('/:id?',function(req,res,next){
 
  router.put('/:id',function(req,res,next){
 
-  Organization.updateTask(req.params.id,req.body,function(err,rows){
+  Organization.updateOrganization(req.params.id,req.body,function(err,rows){
 
     if(err)
     {

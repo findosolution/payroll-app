@@ -2,15 +2,15 @@ var db=require('../dbconnection'); //reference of dbconnection.js
 
 var Organization = {
 
-    getAllTasks:function(callback){
+    getAllOrganizations:function(callback){
       return db.query("Select * from organization",callback);
     },
 
-    getTaskById:function(did,callback){
+    getOrganizationById:function(did,callback){
      return db.query("select * from organization where did=?",[did],callback);
     },
 
-    addTask:function(Organization,callback){
+    addOrganization:function(Organization,callback){
 
       var Contact = Organization.Contact;
 
@@ -51,11 +51,11 @@ var Organization = {
          });
       });
     },
-    deleteTask:function(did,callback){
+    deleteOrganization:function(did,callback){
       return db.query("delete from organization where did=?",[did],callback);
      },
 
-    updateTask:function(did,Organization,callback){
+    updateOrganization:function(did,Organization,callback){
      return db.query("update organization set Name=?,Code=?,AddressDID=?,Active=? where did=?",[Organization.Name,Organization.Code,Organization.AddressDID,Organization.Active,did],callback);
     }
 
