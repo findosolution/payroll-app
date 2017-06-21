@@ -42,7 +42,7 @@ export default class OrganizationApp extends React.Component {
         <OrganizationList/>
 
         {
-          (this.state.showModal)?<AddOrganizationModal />:null
+          (this.state.showModal)?<AddOrganizationModal/>:null
         }
 
       </div>
