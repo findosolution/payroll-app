@@ -3,6 +3,7 @@ import React from 'react';
 import OrganizationSearch from 'OrganizationSearch';
 import OrganizationList from 'OrganizationList';
 import AddOrganizationModal from './AddOrganizationModal';
+import ViewOrganizationModal from './ViewOrganizationModal';
 
 
 export default class OrganizationApp extends React.Component {
@@ -11,15 +12,23 @@ export default class OrganizationApp extends React.Component {
     super(props, context);
 
     this.state = {
-      showModal:false
+      showAddModal:false,
+      showViewModal: false
     };
 
     this._addOrganization = this._addOrganization.bind(this);
+    this._viewOrganization = this._viewOrganization.bind(this);
   }
 
   _addOrganization(){
     this.setState({
-        showModal:true
+        showAddModal:true
+    });
+  }
+
+  _viewOrganization(){
+    this.setState({
+        showViewModal:true
     });
   }
 
@@ -36,13 +45,18 @@ export default class OrganizationApp extends React.Component {
             <OrganizationSearch/>
           </div>
           <div className="large-3 large-offset-3 columns">
-            <button type="button" className="button" onClick={() => this._addOrganization()}>Add</button>
+            <button type="button" className="button button-margin" onClick={() => this._addOrganization()}>Add</button>
+            <button type="button" className="button button-margin" >Delete</button>
           </div>
         </div>
-        <OrganizationList/>
+        <OrganizationList viewOrganization={this._viewOrganization}/>
 
         {
-          (this.state.showModal)?<AddOrganizationModal/>:null
+          (this.state.showAddModal)?<AddOrganizationModal/>:null
+        }
+
+        {
+          (this.state.showViewModal)?<ViewOrganizationModal />:null
         }
 
       </div>

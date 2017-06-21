@@ -34,7 +34,7 @@ export class OrganizationList extends React.Component {
       var filteredOrganizations = OrganizationUtil.filterOrganization(organizations, searchOrganization);
       return filteredOrganizations.map((organization) => {
         return (
-          <Organization key={organization.id} {...organization}/>
+          <Organization key={organization.id} {...organization} viewOrganization={this.props.viewOrganization} />
         );
       });
     };
@@ -43,6 +43,7 @@ export class OrganizationList extends React.Component {
         <table>
           <thead>
             <tr>
+              <th></th>
               <th>Organization</th>
               <th>Address</th>
               <th>Contact Number</th>

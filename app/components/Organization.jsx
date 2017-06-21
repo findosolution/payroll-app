@@ -4,7 +4,10 @@ export default class Organization extends React.Component {
   render() {
     var {id, name, address, contact, email} = this.props;
     return(
-            <tr>
+            <tr onClick={() => this.props.viewOrganization() }>
+              <td>
+                <input type="checkbox" />
+              </td>
               <td>{name}</td>
               <td>{address}</td>
               <td>{contact}</td>
