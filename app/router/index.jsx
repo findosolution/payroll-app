@@ -1,12 +1,12 @@
 import React from 'react';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
-import OrganizationApp from 'OrganizationApp';
+import OrganizationApp from 'organization/OrganizationApp';
 import User from 'User';
 import Login from 'Login';
 import App from 'App';
 import Main from 'Main';
-import AddOrganization from 'AddOrganization';
+import AddOrganization from 'organization/AddOrganization';
 
 export default (
   <Router history={hashHistory}>

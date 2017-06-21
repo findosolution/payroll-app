@@ -2,7 +2,8 @@ import React from 'react';
 var {connect} = require('react-redux');
 
 import * as actions from 'actions';
-import Organization from 'Organization';
+import Organization from './Organization';
+import * as OrganizationAPI from 'OrganizationAPI';
 import * as OrganizationUtil from 'OrganizationUtil';
 
 export class OrganizationList extends React.Component {
@@ -22,7 +23,7 @@ export class OrganizationList extends React.Component {
       var filteredOrganizations = OrganizationUtil.filterOrganization(organizations, searchOrganization);
       return filteredOrganizations.map((organization) => {
         return (
-          <Organization key={organization.id} {...organization}/>
+          <Organization key={organization.id} {...organization} viewOrganization={this.props.viewOrganization} />
         );
       });
     };
@@ -31,6 +32,7 @@ export class OrganizationList extends React.Component {
         <table>
           <thead>
             <tr>
+              <th></th>
               <th>Organization</th>
               <th>Address</th>
               <th>Contact Number</th>
