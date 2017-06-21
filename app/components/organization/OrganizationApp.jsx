@@ -1,7 +1,7 @@
 import React from 'react';
 
-import OrganizationSearch from 'OrganizationSearch';
-import OrganizationList from 'OrganizationList';
+import OrganizationSearch from './OrganizationSearch';
+import OrganizationList from './OrganizationList';
 import AddOrganizationModal from './AddOrganizationModal';
 import ViewOrganizationModal from './ViewOrganizationModal';
 

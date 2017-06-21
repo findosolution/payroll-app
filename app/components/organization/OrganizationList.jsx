@@ -2,7 +2,7 @@ import React from 'react';
 var {connect} = require('react-redux');
 
 import * as actions from 'actions';
-import Organization from 'Organization';
+import Organization from './Organization';
 import * as OrganizationAPI from 'OrganizationAPI';
 import * as OrganizationUtil from 'OrganizationUtil';
 
