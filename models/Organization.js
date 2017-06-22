@@ -53,12 +53,62 @@ var Organization = {
     },
     deleteOrganization:function(did,callback){
       return db.query("delete from organization where did=?",[did],callback);
-     },
+    },
 
     updateOrganization:function(did,Organization,callback){
-     return db.query("update organization set Name=?,Code=?,AddressDID=?,Active=? where did=?",[Organization.Name,Organization.Code,Organization.AddressDID,Organization.Active,did],callback);
+
+    var sqlUpdate = "update organization set ";
+    var params = [];
+
+    if(Organization.Name) {
+      sqlUpdate +="Name=?";
+      params.push(Organization.Name);
     }
 
-};
+    if(Organization.Code) {
+      sqlUpdate +=", Code=?";
+      params.push(Organization.Code);
+    }
 
+    if(Organization.AddressDID) {
+      sqlUpdate +=", AddressDID=?";
+      params.push(Organization.AddressDID);
+    }
+
+    if(Organization.Active) {
+      sqlUpdate +=", Active=?";
+      params.push(Organization.Active);
+    }
+
+    sqlUpdate +=" where did=?";
+    params.push(did);
+
+    sqlUpdate = sqlUpdate.replace(/set , /i, "set ");
+
+    console.log (" sql===> "+ sqlUpdate);
+    console.log (" params===> "+ params);
+
+    db.beginTransaction(function(err) {
+
+        if (err) { throw err; }
+
+        return db.query(sqlUpdate,params,callback,function (err , result) {
+          if (err) {
+            db.rollback(function() {
+              throw err;
+            });
+          }
+          db.commit(function(err) {
+            if (err) {
+              db.rollback(function() {
+                throw err;
+              });
+            }
+        });
+        console.log('Transaction Complete.');
+        return callback(result);
+      });
+    });
+  }
+}
 module.exports=Organization;
