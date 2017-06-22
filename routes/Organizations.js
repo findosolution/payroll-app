@@ -4,7 +4,7 @@ var Organization=require('../models/Organization');
 
 router.get('/:id?',function(req,res,next){
 
-  if(req.params.id !='Orgs') {
+  if(req.params.id !='orgs') {
 
      Organization.getOrganizationById(req.params.id,function(err,rows){
 
