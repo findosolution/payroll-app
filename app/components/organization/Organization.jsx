@@ -6,7 +6,7 @@ export default class Organization extends React.Component {
     return(
             <tr onClick={() => this.props.viewOrganization() }>
               <td>
-                <input type="checkbox" />
+                <input id={did} type="checkbox" />
               </td>
               <td>{name}</td>
               <td>{address}</td>
