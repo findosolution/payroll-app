@@ -33,9 +33,14 @@ class AddOrganizationModal extends React.Component{
       //add org to database, that may return id ? should we need to move these to action ?? Prasad ??
       organization = {...organization, id: 100};
       dispatch(actions.addOrganization(organization));
+      this.props.handleClose();
     } else {
       this.refs.orgname.focus();
     }
+  }
+
+  onClose() {
+    this.props.handleClose();
   }
 
   render(){
@@ -49,7 +54,8 @@ class AddOrganizationModal extends React.Component{
               <label>Address :</label><input type="text" ref="orgaddress" placeholder="Company address"/>
               <label>Contact :</label><input type="text" ref="orgcontact" placeholder="Company contact"/>
               <label>Email :</label><input type="text" ref="orgemail" placeholder="Company email"/>
-              <button className="button">Create</button>
+              <button type="submit" className="button button-margin">Create</button>
+              <button type="button" className="button button-margin" onClick={this.onClose.bind(this)}>Close</button>
             </form>
           </div>
         </Modal>

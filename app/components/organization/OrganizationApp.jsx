@@ -18,11 +18,18 @@ export default class OrganizationApp extends React.Component {
 
     this._addOrganization = this._addOrganization.bind(this);
     this._viewOrganization = this._viewOrganization.bind(this);
+    this._hideOrganizationModal = this._hideOrganizationModal.bind(this);
   }
 
   _addOrganization(){
     this.setState({
         showAddModal:true
+    });
+  }
+
+  _hideOrganizationModal(){
+    this.setState({
+        showAddModal:false
     });
   }
 
@@ -52,7 +59,7 @@ export default class OrganizationApp extends React.Component {
         <OrganizationList viewOrganization={this._viewOrganization}/>
 
         {
-          (this.state.showAddModal)?<AddOrganizationModal/>:null
+          (this.state.showAddModal)?<AddOrganizationModal handleClose={this._hideOrganizationModal}/>:null
         }
 
         {
