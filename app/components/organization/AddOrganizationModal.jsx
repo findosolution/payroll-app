@@ -2,6 +2,9 @@ import Modal from 'react-modal';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
+var {connect} = require('react-redux');
+
+import * as actions from 'actions';
 
 
 class AddOrganizationModal extends React.Component{
@@ -10,10 +13,8 @@ class AddOrganizationModal extends React.Component{
     super(props,context);
 
     this.state ={
-      modalIsOpen:true,
-
+      modalIsOpen:true
     }
-
   //  this.handeSubmit = this.handeSubmit.bind(this);
   }
 
@@ -36,7 +37,6 @@ class AddOrganizationModal extends React.Component{
       this.refs.orgname.focus();
     }
   }
-
 
   render(){
     return(
@@ -63,4 +63,4 @@ AddOrganizationModal.propTypes = {
 
 }
 
-export default AddOrganizationModal;
+export default connect()(AddOrganizationModal);
