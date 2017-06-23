@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Organization=require('../../models/Organization');
+var Organization=require('../models/Organization');
 
 router.get('/:id?',function(req,res,next){
 

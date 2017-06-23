@@ -21,7 +21,22 @@ Following table summarized the routes we will be using.
 	<td>http://localhost:3000/Orgs/[did]</td>
 	<td>GET</td>
   <td></td>
-  <td></td>
+  <td>
+		{
+			 "did": 15,
+			 "name": "DEFddeded Preeivadte Ltd",
+			 "code": "DEdF",
+			 "addressdid": 2,
+			 "active": 1,
+			 "addresstypedid": "1",
+			 "address1": "street 1",
+			 "postalcode": 0,
+			 "city": "",
+			 "country": "",
+			 "email": "",
+			 "mobile": 0
+	 }
+	</td>
 </tr>
 <tr>
 	<td>http://localhost:3000/Orgs/[did]</td>
