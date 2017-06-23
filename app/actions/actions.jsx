@@ -24,6 +24,7 @@ export var addOrganization = (organization) => {
 export var startAddOrganizations = () => {
   return (dispatch, getState) => {
     return OrganizationAPI.getOrganizations().then((snapshot) => {
+      console.log(snapshot);
       dispatch(addOrganizations(snapshot.data));
       /*var todos = snapshot.val() || {};
       var passedTodos = [];
@@ -35,7 +36,7 @@ export var startAddOrganizations = () => {
       });
 
       dispatch(addTodos(snapshot.data));*/
-      console.log(snapshot);
+      //console.log(snapshot);
     }, (e) => {
       console.log('Unable to get data');
     });

@@ -23,7 +23,7 @@ export class OrganizationList extends React.Component {
       var filteredOrganizations = OrganizationUtil.filterOrganization(organizations, searchOrganization);
       return filteredOrganizations.map((organization) => {
         return (
-          <Organization key={organization.id} {...organization} viewOrganization={this.props.viewOrganization} />
+          <Organization key={organization.did} {...organization} viewOrganization={this.props.viewOrganization} />
         );
       });
     };

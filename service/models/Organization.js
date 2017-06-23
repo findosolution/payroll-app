@@ -13,25 +13,6 @@ var Organization = {
             throw err;
         }
 
-      for (var i =0 ; i < result.length ; i ++) {
-
-        contact.addresstypedid = result[i].addresstypedid;
-        contact.address1  = result[i].address1;
-        contact.postalcode = result[i].postalcode;
-        contact.country = result[i].country;
-        contact.email = result[i].email;
-        contact.mobile = result[i].mobile;
-
-        delete result[i].mobile;
-        delete result[i].email;
-        delete result[i].country;
-        delete result[i].postalcode;
-        delete result[i].address1;
-        delete result[i].addresstypedid;
-
-        result [i].contact = contact;
-
-      }
       return callback(result);
 
       });
@@ -47,24 +28,6 @@ var Organization = {
        if (err) {
            throw err;
        }
-
-      //contact.addresstypedid = result.addresstypedid;
-      contact.addresstypedid = result[0].addresstypedid;
-      contact.address1  = result[0].address1;
-      contact.postalcode = result[0].postalcode;
-      contact.country = result[0].country;
-      contact.email = result[0].email;
-      contact.mobile = result[0].mobile;
-
-
-      delete result[0].mobile;
-      delete result[0].email;
-      delete result[0].country;
-      delete result[0].postalcode;
-      delete result[0].address1;
-      delete result[0].addresstypedid;
-
-      result [0].contact = contact;
 
        return callback(result);
 

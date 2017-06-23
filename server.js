@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', Organizations);
+//app.use('/', Organizations);
 //app.use('/users', users);
 app.use('/orgs',Organizations);
 
