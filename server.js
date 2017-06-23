@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', Organizations);
 //app.use('/users', users);
-app.use('/Orgs',Organizations);
+app.use('/orgs',Organizations);
 
 const PORT = process.env.PORT || 3000;
 

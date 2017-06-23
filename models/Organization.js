@@ -12,7 +12,7 @@ var Organization = {
 
     addOrganization:function(Organization,callback){
 
-      var Contact = Organization.Contact;
+      var Contact = Organization.contact;
 
       db.beginTransaction(function(err) {
 
@@ -28,7 +28,7 @@ var Organization = {
            var addressdid = result.insertId;
            console.log(result);
 
-           db.query("Insert into organization values(?,?,?,?,?)",[Organization.did,Organization.Name,Organization.Code,addressdid,Organization.Active], function(err, result) {
+           db.query("Insert into organization values(?,?,?,?,?)",[Organization.did,Organization.name,Organization.code,addressdid,Organization.active], function(err, result) {
 
               if (err) {
                 db.rollback(function() {
@@ -60,24 +60,24 @@ var Organization = {
     var sqlUpdate = "update organization set ";
     var params = [];
 
-    if(Organization.Name) {
-      sqlUpdate +="Name=?";
-      params.push(Organization.Name);
+    if(Organization.name) {
+      sqlUpdate +="name=?";
+      params.push(Organization.name);
     }
 
-    if(Organization.Code) {
-      sqlUpdate +=", Code=?";
-      params.push(Organization.Code);
+    if(Organization.code) {
+      sqlUpdate +=", code=?";
+      params.push(Organization.code);
     }
 
-    if(Organization.AddressDID) {
-      sqlUpdate +=", AddressDID=?";
-      params.push(Organization.AddressDID);
+    if(Organization.addressdid) {
+      sqlUpdate +=", addressdid=?";
+      params.push(Organization.addressdid);
     }
 
-    if(Organization.Active) {
-      sqlUpdate +=", Active=?";
-      params.push(Organization.Active);
+    if(Organization.active) {
+      sqlUpdate +=", active=?";
+      params.push(Organization.active);
     }
 
     sqlUpdate +=" where did=?";
