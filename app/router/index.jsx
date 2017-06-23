@@ -6,7 +6,6 @@ import User from 'User';
 import Login from 'Login';
 import App from 'App';
 import Main from 'Main';
-import AddOrganization from 'organization/AddOrganization';
 
 export default (
   <Router history={hashHistory}>
@@ -14,7 +13,6 @@ export default (
       <IndexRoute component={Login}/>
       <Route path="/main" component={Main} >
         <Route path="organizations" component={OrganizationApp}/>
-        <Route path="addOrganization" component={AddOrganization}/>
         <Route path="user" component={User}/>
         <IndexRoute component={OrganizationApp}/>
       </Route>

@@ -23,7 +23,21 @@ export var addOrganization = (organization) => {
 
 export var startAddOrganizations = () => {
   return (dispatch, getState) => {
-    var organizations = OrganizationAPI.getOrganizations();
-    dispatch(addOrganizations(organizations));
+    return OrganizationAPI.getOrganizations().then((snapshot) => {
+      dispatch(addOrganizations(snapshot.data));
+      /*var todos = snapshot.val() || {};
+      var passedTodos = [];
+      Object.keys(todos).forEach((todoId) => {
+        passedTodos.push({
+          id: todoId,
+          ...todos[todoId]
+        });
+      });
+
+      dispatch(addTodos(snapshot.data));*/
+      console.log(snapshot);
+    }, (e) => {
+      console.log('Unable to get data');
+    });
   }
 };
