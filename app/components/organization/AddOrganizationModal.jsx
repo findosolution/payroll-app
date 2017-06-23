@@ -26,13 +26,18 @@ class AddOrganizationModal extends React.Component{
       var {dispatch} = this.props;
       var organization = {
         name: orgName,
-        address: this.refs.orgname.value,
-        contact: this.refs.orgcontact.value,
-        email: this.refs.orgemail.value
+        code: "DEdF",
+        active: 1,
+        addresstypedid: "1",
+        address1: this.refs.orgaddress.value,
+        postalcode: 0,
+        city: "",
+        country: "Sri Lanka",
+        email: this.refs.orgemail.value,
+        mobile: this.refs.orgcontact.value
       };
-      //add org to database, that may return id ? should we need to move these to action ?? Prasad ??
-      organization = {...organization, id: 100};
-      dispatch(actions.addOrganization(organization));
+
+      dispatch(actions.startAddOrganization(organization));
       this.props.handleClose();
     } else {
       this.refs.orgname.focus();

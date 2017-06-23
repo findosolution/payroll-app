@@ -14,6 +14,17 @@ export var addOrganizations = (organizations) => {
   };
 };
 
+export var startAddOrganizations = () => {
+  return (dispatch, getState) => {
+    return OrganizationAPI.getOrganizations().then((snapshot) => {
+      console.log(snapshot);
+      dispatch(addOrganizations(snapshot.data));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+};
+
 export var addOrganization = (organization) => {
   return {
     type: 'ADD_ORGANIZATION',
@@ -21,24 +32,34 @@ export var addOrganization = (organization) => {
   };
 };
 
-export var startAddOrganizations = () => {
+export var startAddOrganization = (organization) => {
   return (dispatch, getState) => {
+    var contact = {
+      addresstypedid: organization.addresstypedid,
+      address1: organization.address1,
+      mobile: organization.mobile,
+      email: organization.email,
+      postalcode: organization.postalcode,
+      city: organization.city,
+      country: organization.country,
+    }
+
+    var organizationTobeSave = {
+      name: organization.name,
+      code: organization.code,
+      active: organization.active,
+      contact: contact
+    }
+
     return OrganizationAPI.getOrganizations().then((snapshot) => {
       console.log(snapshot);
-      dispatch(addOrganizations(snapshot.data));
-      /*var todos = snapshot.val() || {};
-      var passedTodos = [];
-      Object.keys(todos).forEach((todoId) => {
-        passedTodos.push({
-          id: todoId,
-          ...todos[todoId]
-        });
-      });
-
-      dispatch(addTodos(snapshot.data));*/
-      //console.log(snapshot);
+      dispatch(addOrganization({
+        ...organization,
+        did: snapshot.data.orgdid,
+        addressdid: snapshot.data.addressdid
+      }));
     }, (e) => {
       console.log('Unable to get data');
     });
-  }
+  };
 };

@@ -17,5 +17,18 @@ module.exports = {
     }, function (res) {
       throw new Error(res.message);
     });
+  },
+  saveOrganization: function (organization) {
+    var requestUrl = `${ROOT_URL}orgs/`;
+
+    return axios.post(requestUrl, organization).then(function (res) {
+      if (res.cod && res.cod != 200 && res.message) {
+        throw new Error(res.message);
+      } else {
+        return res;
+      }
+    }, function (res) {
+      throw new Error(res.message);
+    });
   }
 }
