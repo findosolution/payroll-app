@@ -9,6 +9,32 @@ import * as actions from 'actions';
 
 class AddOrganizationModal extends React.Component{
 
+  customStyle = {
+    overlay : {
+      position          : 'fixed',
+      top               : 0,
+      left              : 0,
+      right             : 0,
+      bottom            : 0,
+      backgroundColor   : 'rgba(0,0,0,0.8)'
+    },
+    content : {
+      position                   : 'absolute',
+      top                        : '40px',
+      left                       : '40px',
+      right                      : '40px',
+      bottom                     : '40px',
+      border                     : '1px solid #ccc',
+      background                 : '#fff',
+      overflow                   : 'auto',
+      WebkitOverflowScrolling    : 'touch',
+      borderRadius               : '4px',
+      outline                    : 'none',
+      padding                    : '20px'
+
+    }
+  };
+
   constructor(props,context){
     super(props,context);
 
@@ -51,7 +77,7 @@ class AddOrganizationModal extends React.Component{
   render(){
     return(
       <div>
-        <Modal isOpen={this.state.modalIsOpen} contentLabel="Add Organization">
+        <Modal isOpen={this.state.modalIsOpen} contentLabel="Add Organization" style={this.customStyle}>
           <div>
             <form ref="form" onSubmit={this.handleSubmit.bind(this)}>
               <h1 className="page-title">Create company</h1>
