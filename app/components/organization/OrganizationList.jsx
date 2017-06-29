@@ -23,7 +23,7 @@ export class OrganizationList extends React.Component {
       var filteredOrganizations = OrganizationUtil.filterOrganization(organizations, searchOrganization);
       return filteredOrganizations.map((organization) => {
         return (
-          <Organization key={organization.did} {...organization} viewOrganization={this.props.viewOrganization} />
+          <Organization key={organization.did} {...organization} viewOrganization={this.props.viewOrganization1} />
         );
       });
     };
@@ -46,24 +46,6 @@ export class OrganizationList extends React.Component {
       </div>
     );
   }
-};
-
-OrganizationList.defaultProps = {
-  organizations: [
-    {
-      id: 1,
-      name: 'EML Consultants',
-      address : "Colombo",
-      contact : "077 777 77 77",
-      email : "test@test.com"
-    },{
-      id: 2,
-      name: 'ABC Company',
-      address : "Colombo",
-      contact : "077 777 77 77",
-      email : "test@test.com"
-    }
-  ]
 };
 
 export default connect((state) => {

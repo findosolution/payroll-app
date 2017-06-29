@@ -63,3 +63,20 @@ export var startAddOrganization = (organization) => {
     });
   };
 };
+
+export var removeOrganization = (did) => {
+  return {
+    type: 'REMOVE_ORGANIZATION',
+    did
+  };
+};
+
+export var startRemoveOrganization = (did) => {
+  return (dispatch, getState) => {
+    return OrganizationAPI.removeOrganization(did).then((snapshot) => {
+      dispatch(removeOrganization(did));
+    }, (e) => {
+      console.log('Unable to save Organization');
+    });
+  };
+}

@@ -19,6 +19,12 @@ export var organizationReducer = (state = [], action) => {
         ...state,
         action.organization
       ];
+    case 'REMOVE_ORGANIZATION':
+      let index = state.findIndex((organization) => organization.did === action.did);
+      return [
+        ...state.slice(0, index),
+        ...state.slice(index + 1)
+      ];
     default:
       return state;
   };
