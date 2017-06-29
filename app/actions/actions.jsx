@@ -51,7 +51,7 @@ export var startAddOrganization = (organization) => {
       contact: contact
     }
 
-    return OrganizationAPI.getOrganizations().then((snapshot) => {
+    return OrganizationAPI.saveOrganization(organizationTobeSave).then((snapshot) => {
       console.log(snapshot);
       dispatch(addOrganization({
         ...organization,
@@ -59,7 +59,7 @@ export var startAddOrganization = (organization) => {
         addressdid: snapshot.data.addressdid
       }));
     }, (e) => {
-      console.log('Unable to get data');
+      console.log('Unable to save Organization');
     });
   };
 };
