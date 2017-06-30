@@ -6,9 +6,9 @@ const Navbar = () => (
       <ul className="menu">
         <li className="menu-text">Payroll</li>
         <li>
-          <a href="#">Organizations</a>
+          <a href="organizations">Organizations</a>
         </li>
-        <li><a href="#">Employees</a></li>
+        <li><a href="employee">Employees</a></li>
         <li><a href="#">Reports</a></li>
       </ul>
     </div>

@@ -6,14 +6,16 @@ import User from 'User';
 import Login from 'Login';
 import App from 'App';
 import Main from 'Main';
+import EmployeeApp from 'employee/EmployeeApp';
 
 export default (
   <Router history={hashHistory}>
     <Route path="/" component={App} >
       <IndexRoute component={Login}/>
-      <Route path="/main" component={Main} >
-        <Route path="organizations" component={OrganizationApp}/>
-        <Route path="user" component={User}/>
+      <Route path="main" component={Main} >
+        <Route path="/organizations" component={OrganizationApp}/>
+        <Route path="/user" component={User}/>
+        <Route path="/employee" component={EmployeeApp}/>
         <IndexRoute component={OrganizationApp}/>
       </Route>
     </Route>
