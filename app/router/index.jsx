@@ -13,9 +13,8 @@ export default (
     <Route path="/" component={App} >
       <IndexRoute component={Login}/>
       <Route path="main" component={Main} >
-        <Route path="/organizations" component={OrganizationApp}/>
-        <Route path="/user" component={User}/>
         <Route path="/employee" component={EmployeeApp}/>
+        <Route path="/organizations" component={OrganizationApp}/>
         <IndexRoute component={OrganizationApp}/>
       </Route>
     </Route>

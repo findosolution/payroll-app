@@ -56,16 +56,6 @@ export default class EmployeeApp extends React.Component {
             <button type="button" className="button button-margin" >Delete</button>
           </div>
         </div>
-        <EmployeeList viewEmployee={this._viewEmployee}/>
-
-        {
-          (this.state.showAddModal)?<AddEmployeeModal handleClose={this._hideEmployeeModal}/>:null
-        }
-
-        {
-          (this.state.showViewModal)?<ViewEmployeeModal />:null
-        }
-
       </div>
     );
   }
