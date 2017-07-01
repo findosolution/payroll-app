@@ -56,6 +56,7 @@ export default class EmployeeApp extends React.Component {
             <button type="button" className="button button-margin" >Delete</button>
           </div>
         </div>
+         <EmployeeList viewEmployee={this._viewEmployee}/>
       </div>
     );
   }

@@ -3,6 +3,7 @@ var {connect} = require('react-redux');
 
 import * as actions from 'actions';
 import Employee from './Employee';
+import * as EmployeeAPI from 'EmployeeAPI';
 
 export class EmployeeList extends React.Component {
   constructor (props) {
@@ -10,15 +11,18 @@ export class EmployeeList extends React.Component {
   }
 
   componentDidMount() {
+    var {dispatch} = this.props;
+    dispatch(actions.startAddEmployees());
   }
 
   render () {
     var renderEmployees = () => {
       var {employees} = this.props;
 
+      console.log(employees);
       return employees.map((employee) => {
-        return (
-          <Employee key={employee.empID} {...employee} viewEmployee={this.props.viewEmployee} />
+       return (
+          <Employee key={employee.did} {...employee} viewEmployee={this.props.viewEmployee} />
         );
       });
     };
@@ -49,23 +53,33 @@ export class EmployeeList extends React.Component {
 EmployeeList.defaultProps = {
   employees: [
     {
-      empID: 1,
-      empFirstName: 'Supun',
-      empLastName : "Gamage",
-      empOrganization : "eBuilder",
-      empDepartment : "Development",
-      empCategory : "Permanant",
-      empRole : "Developer"
+      "did" : 1,
+      "empId": 1,
+      "firstName": 'Supun',
+      "lastName" : "Gamage",
+      "organization" : "eBuilder",
+      "department" : "Development",
+      "empCategory" : "Permanant",
+      "empRole" : "Developer",
+      "bankAccountNumber": 123321123321,
+	    "subscribed": 1
     },{
-      empID: 1,
-      empFirstName: 'Danuka',
-      empLastName : "Wijetunga",
-      empOrganization : "eBuilder",
-      empDepartment : "Development",
-      empCategory : "Permanant",
-      empRole : "Developer"
+      "did": 2,
+      "empId": 2,
+      "firstName": 'danuka',
+      "lastName" : "wijetunge",
+      "organization" : "eBuilder",
+      "department" : "Development",
+      "empCategory" : "Permanant",
+      "empRole" : "Developer",
+      "bankAccountNumber": 123321123321,
+	    "subscribed": 1
     }
   ]
 };
 
-export default EmployeeList;
+export default connect((state) => {
+  return {
+    employees : state.employees
+  };
+})(EmployeeList);

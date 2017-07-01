@@ -1,4 +1,5 @@
 import * as OrganizationAPI from 'OrganizationAPI';
+import * as EmployeeAPI from 'EmployeeAPI';
 
 export var setSearchOrganization = (searchOrganization) => {
   return {
@@ -79,4 +80,22 @@ export var startRemoveOrganization = (did) => {
       console.log('Unable to save Organization');
     });
   };
-}
+};
+
+export var addEmployees = (employees) => {
+  return {
+    type: 'ADD_EMPLOYEES',
+    employees
+  };
+};
+
+export var startAddEmployees = () => {
+  return (dispatch, getState) => {
+    return EmployeeAPI.getAllEmployees().then((snapshot) => {
+      console.log(snapshot);
+      dispatch(addEmployees(snapshot.data));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+};
