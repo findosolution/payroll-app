@@ -18,12 +18,12 @@ export class OrganizationList extends React.Component {
 
   render () {
     var renderOrganizations = () => {
-      var {organizations, searchOrganization} = this.props;
+      var {organizations, searchOrganization, viewOrganization} = this.props;
 
       var filteredOrganizations = OrganizationUtil.filterOrganization(organizations, searchOrganization);
       return filteredOrganizations.map((organization) => {
         return (
-          <Organization key={organization.did} {...organization} viewOrganization={this.props.viewOrganization1} />
+          <Organization key={organization.did} organization={organization} viewOrganization={viewOrganization} />
         );
       });
     };

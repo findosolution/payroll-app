@@ -29,3 +29,12 @@ export var organizationReducer = (state = [], action) => {
       return state;
   };
 }
+
+export var selectedOrganizationReducer = (state = null, action) => {
+  switch(action.type) {
+    case 'SET_SELECTED_ORGANIZATION':
+      return action.organization
+    default:
+      return state;
+  };
+}
