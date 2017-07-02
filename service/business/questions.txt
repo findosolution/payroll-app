@@ -1,0 +1,11 @@
+1. allowansers for unit or paying unit ? or it should be configurable ? (I thnk it should be unit)
+2. addition and deduction for unit or paying unit ? (I thnk it should be unit)
+3. paye tax should be paying unit ?
+4. EPF should be paying unit ?
+
+5. paye tax net salary ?
+6. EPF for gorss salary ?
+
+basic sarary - defined in package
+gross - eligibale amount from basic
+net - paying amount

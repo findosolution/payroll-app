@@ -1,0 +1,66 @@
+
+1. load organization/department details (salary unit, paying unit, )
+
+2. load employee details
+3. load employee salary package (basic salary, [allawansers], salary unit, paying unit, )
+
+4. procrssed leave and attendance ( empId, no pay units, total units, )
+
+5. add addition
+6. remove deduction
+
+7. deduct paye tax
+8. deduct EPF emp contribution
+
+================================
+
+ex - unit - monthly
+paying unit - monthly
+-----------------------------
+
+basic salary - 100,000
+allawansers -
+  taveling - 10,000
+  food     - 20,000
+  living   - 30,000
+
+processed leave and attendance
+  total units - 1
+  no pay units- 0
+
+addition
+  commition   - 10,000
+
+deduction
+  club        - 5,000
+  paking      - 5,000
+
+paye tax      - 10%
+EPF contribution- 10%
+
+==========================
+
+ex - unit - daily
+paying unit - monthly
+allawansers for - unit
+-----------------------------
+
+basic salary - 5,000
+allawansers -
+  taveling - 2,000
+  food     - 1,000
+  living   - 2,000
+
+processed leave and attendance
+  total units - 30
+  no pay units- 2 (this is not leaves but no pay leaves only)
+
+addition
+  commition   - 1,000
+
+deduction
+  club        - 1,000
+  paking      - 1,000
+
+paye tax      - 10%
+EPF contribution- 10%
