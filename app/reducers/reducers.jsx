@@ -28,9 +28,7 @@ export var organizationReducer = (state = [], action) => {
     default:
       return state;
   };
-}
-
-<<<<<<< HEAD
+};
 
 export var employeeReducer = (state = [], action) => {
   switch(action.type) {
@@ -39,14 +37,16 @@ export var employeeReducer = (state = [], action) => {
         ...state,
         ...action.employees
       ];
+      default:
+        return state;
+  };
+};
 
-=======
 export var selectedOrganizationReducer = (state = null, action) => {
   switch(action.type) {
     case 'SET_SELECTED_ORGANIZATION':
       return action.organization
->>>>>>> 1277d88b1412b842b9df35fdf4c95c9079e92934
     default:
       return state;
   };
-}
+};

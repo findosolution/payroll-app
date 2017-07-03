@@ -17,7 +17,7 @@ export class EmployeeList extends React.Component {
 
   render () {
     var renderEmployees = () => {
-      var {employees} = this.props;
+      var {employees, organizations} = this.props;
 
       return employees.map((employee) => {
      return (
