@@ -29,3 +29,17 @@ export var organizationReducer = (state = [], action) => {
       return state;
   };
 }
+
+
+export var employeeReducer = (state = [], action) => {
+  switch(action.type) {
+    case 'ADD_EMPLOYEES':
+      return [
+        ...state,
+        ...action.employees
+      ];
+
+    default:
+      return state;
+  };
+}

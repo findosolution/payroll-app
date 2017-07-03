@@ -7,6 +7,7 @@ export class Organization extends React.Component {
   render() {
     var {did, name, address1, country, mobile, email, dispatch} = this.props;
     var address = `${address1}, ${country}`;
+    console.log(did);
     return(
             <tr>
               <td>

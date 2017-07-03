@@ -4,6 +4,7 @@ export default class Employee extends React.Component {
   render() {
     var {did,empId, firstName, lastName, organization, department, empCategory} = this.props;
     //var address = `${address1}, ${country}`;
+    console.log(empId);
     return(
             <tr onClick={() => this.props.viewOrganization() }>
               <td>

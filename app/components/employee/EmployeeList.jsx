@@ -19,12 +19,12 @@ export class EmployeeList extends React.Component {
     var renderEmployees = () => {
       var {employees} = this.props;
 
-      console.log(employees);
       return employees.map((employee) => {
-       return (
-          <Employee key={employee.did} {...employee} viewEmployee={this.props.viewEmployee} />
-        );
-      });
+     return (
+        <Employee key={employee.did} {...employee} viewEmployee={this.props.viewEmployee1} />
+      );
+    });
+
     };
     return(
       <div className="row">
@@ -50,35 +50,8 @@ export class EmployeeList extends React.Component {
   }
 };
 
-EmployeeList.defaultProps = {
-  employees: [
-    {
-      "did" : 1,
-      "empId": 1,
-      "firstName": 'Supun',
-      "lastName" : "Gamage",
-      "organization" : "eBuilder",
-      "department" : "Development",
-      "empCategory" : "Permanant",
-      "empRole" : "Developer",
-      "bankAccountNumber": 123321123321,
-	    "subscribed": 1
-    },{
-      "did": 2,
-      "empId": 2,
-      "firstName": 'danuka',
-      "lastName" : "wijetunge",
-      "organization" : "eBuilder",
-      "department" : "Development",
-      "empCategory" : "Permanant",
-      "empRole" : "Developer",
-      "bankAccountNumber": 123321123321,
-	    "subscribed": 1
-    }
-  ]
-};
-
 export default connect((state) => {
+  console.log(state);
   return {
     employees : state.employees
   };

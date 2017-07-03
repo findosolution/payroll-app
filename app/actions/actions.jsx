@@ -92,7 +92,7 @@ export var addEmployees = (employees) => {
 export var startAddEmployees = () => {
   return (dispatch, getState) => {
     return EmployeeAPI.getAllEmployees().then((snapshot) => {
-      console.log(snapshot);
+      console.log("Snapshot ====>",snapshot.data);
       dispatch(addEmployees(snapshot.data));
     }, (e) => {
       console.log('Unable to get data');
