@@ -82,6 +82,13 @@ export var startRemoveOrganization = (did) => {
   };
 };
 
+export var setSelectedOrganization = (organization) => {
+  return {
+    type: 'SET_SELECTED_ORGANIZATION',
+    organization
+  };
+}
+
 export var addEmployees = (employees) => {
   return {
     type: 'ADD_EMPLOYEES',

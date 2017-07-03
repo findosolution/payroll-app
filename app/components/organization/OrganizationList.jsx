@@ -20,10 +20,8 @@ export class OrganizationList extends React.Component {
     var renderOrganizations = () => {
       var {organizations, searchOrganization} = this.props;
 
-      console.log(organizations);
-
       var filteredOrganizations = OrganizationUtil.filterOrganization(organizations, searchOrganization);
-      return organizations.map((organization) => {
+      return filteredOrganizations.map((organization) => {
         return (
           <Organization key={organization.did} {...organization} viewOrganization={this.props.viewOrganization1} />
         );
