@@ -11,7 +11,8 @@ var calculateSalary = (empId, employeeSalary, attendance, additions, diductions)
 
   var toatalAllowances = 0;
   for (allowance : employeeSalary.allowances) {
-    toatalAllowances += allowance.amount;
+    //toatalAllowances += allowance.amount; //if paying unit
+    toatalAllowances += (allowance.amount * (attendance.totalUnits - attendance.noPayUnits)); //if unit
   }
 
   var toatalAdditions = 0;
@@ -24,6 +25,7 @@ var calculateSalary = (empId, employeeSalary, attendance, additions, diductions)
     toatalDiductions += diduction.amount;
   }
 
+  // todo - this should be adoupted for no pay leaves (depend on how data come from attendance)
   var eligibaleSalary = employeeSalary.basic * (attendance.totalUnits - attendance.noPayUnits);
 
   var grossSalary = eligibaleSalary + toatalAllowances + toatalAdditions - toatalDiductions;
