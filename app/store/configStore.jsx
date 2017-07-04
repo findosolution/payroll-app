@@ -1,12 +1,14 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import {searchOrganizationReducer, organizationReducer, selectedOrganizationReducer} from 'reducers';
+import {searchOrganizationReducer, organizationReducer, selectedOrganizationReducer, employeeReducer} from 'reducers';
+
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
     searchOrganization: searchOrganizationReducer,
     organizations: organizationReducer,
+    employees : employeeReducer,
     selectedOrganization: selectedOrganizationReducer
   });
 

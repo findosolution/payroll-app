@@ -19,20 +19,21 @@ export class Organization extends React.Component {
   }
 
   render() {
-    var {organization, dispatch} = this.props;
-    var address = `${organization.address1}, ${organization.country}`;
+    var {did, name, address1, country, mobile, email, dispatch} = this.props;
+    var address = `${address1}, ${country}`;
+
     return(
             <tr>
               <td>
-                <input id={organization.did} type="checkbox" />
-                <button type="button" id={organization.did}
+                <input id={did} type="checkbox" />
+                <button type="button" id={did}
                   className="button small success button-margin"
-                  onClick={() => dispatch(actions.startRemoveOrganization(organization.did))}>Remove</button>
+                  onClick={() => dispatch(actions.startRemoveOrganization(did))}>Remove</button>
               </td>
-              <td onClick={this.setSelectedOrganization}>{organization.name}</td>
-              <td onClick={this.setSelectedOrganization}>{address}</td>
-              <td onClick={this.setSelectedOrganization}>{organization.mobile}</td>
-              <td onClick={this.setSelectedOrganization}>{organization.email}</td>
+              <td onClick={() => this.props.viewOrganization() }>{name}</td>
+              <td onClick={() => this.props.viewOrganization() }>{address}</td>
+              <td onClick={() => this.props.viewOrganization() }>{mobile}</td>
+              <td onClick={() => this.props.viewOrganization() }>{email}</td>
             </tr>
     );
   }
