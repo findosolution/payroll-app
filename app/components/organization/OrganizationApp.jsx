@@ -56,7 +56,7 @@ export default class OrganizationApp extends React.Component {
             <button type="button" className="button button-margin" >Delete</button>
           </div>
         </div>
-        <OrganizationList viewOrganization={this._addOrganization}/>
+        <OrganizationList />
 
         {
           (this.state.showAddModal)?<AddOrganizationModal handleClose={this._hideOrganizationModal}/>:null

@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
 import OrganizationApp from 'organization/OrganizationApp';
+import OrganizationDetail from 'organization/OrganizationDetail';
 import User from 'User';
 import Login from 'Login';
 import App from 'App';
@@ -15,6 +16,7 @@ export default (
       <Route path="main" component={Main} >
         <Route path="/employee" component={EmployeeApp}/>
         <Route path="/organizations" component={OrganizationApp}/>
+        <Route path="/organizationDetail" component={OrganizationDetail}/>
         <IndexRoute component={OrganizationApp}/>
       </Route>
     </Route>

@@ -1,5 +1,6 @@
 import React from 'react';
 var {connect} = require('react-redux');
+import {hashHistory} from 'react-router';
 
 import * as actions from 'actions';
 
@@ -11,9 +12,10 @@ export class Organization extends React.Component {
   }
 
   setSelectedOrganization() {
-    var {organization, dispatch, viewOrganization} = this.props;
+    var {organization, dispatch} = this.props;
     dispatch(actions.setSelectedOrganization(organization));
-    viewOrganization();
+    let url = `/organizationDetail`;
+    hashHistory.push(url);
   }
 
   render() {
