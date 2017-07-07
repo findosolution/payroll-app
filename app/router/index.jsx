@@ -16,7 +16,7 @@ export default (
     <Route path="/" component={App} >
       <IndexRoute component={Login}/>
       <Route path="/main" component={Main} >
-        <Route path="organizations" component={OrganizationApp}/>
+        <Route path="/organizations" component={OrganizationApp}/>
         <Route path="rule" component={RuleApp} />
         <Route path="user" component={User}/>
         <Route path="/employee" component={EmployeeApp}/>

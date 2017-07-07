@@ -91,6 +91,17 @@ export var setSelectedOrganization = (organization) => {
   };
 }
 
+export var setSelectedOrganizationFromAPI = (did) => {
+  return (dispatch, getState) => {
+    return OrganizationAPI.getOrganizationByDid(did).then((snapshot) => {
+      console.log(snapshot.data);
+      dispatch(setSelectedOrganization(snapshot.data[0]));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+};
+
 export var addEmployees = (employees) => {
   return {
     type: 'ADD_EMPLOYEES',
