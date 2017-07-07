@@ -1,7 +1,7 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import {searchOrganizationReducer, organizationReducer, selectedOrganizationReducer, employeeReducer} from 'reducers';
+import {searchOrganizationReducer, organizationReducer, selectedOrganizationReducer, employeeReducer, ruleReducer} from 'reducers';
 
 
 export var configure = (initialState = {}) => {
@@ -9,7 +9,8 @@ export var configure = (initialState = {}) => {
     searchOrganization: searchOrganizationReducer,
     organizations: organizationReducer,
     employees : employeeReducer,
-    selectedOrganization: selectedOrganizationReducer
+    selectedOrganization: selectedOrganizationReducer,
+    rules: ruleReducer
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(

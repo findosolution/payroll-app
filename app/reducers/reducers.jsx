@@ -1,3 +1,5 @@
+import * as ActionTypes from '../constants/actionTypes';
+
 export var searchOrganizationReducer = (state = '', action) => {
   switch (action.type) {
     case 'SET_SEARCH_ORGANIZATION':
@@ -46,6 +48,18 @@ export var selectedOrganizationReducer = (state = null, action) => {
   switch(action.type) {
     case 'SET_SELECTED_ORGANIZATION':
       return action.organization
+    default:
+      return state;
+  };
+};
+
+export const ruleReducer = (state = [], action) => {
+  switch(action.type) {
+    case ActionTypes.LOAD_RULES_SUCCESS:
+      return [
+        ...state,
+        ...action.rules
+      ];
     default:
       return state;
   };

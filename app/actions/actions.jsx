@@ -1,5 +1,7 @@
 import * as OrganizationAPI from 'OrganizationAPI';
 import * as EmployeeAPI from 'EmployeeAPI';
+import * as RuleAPI from 'RuleAPI';
+import * as ActionTypes from '../constants/actionTypes';
 
 export var setSearchOrganization = (searchOrganization) => {
   return {
@@ -106,3 +108,22 @@ export var startAddEmployees = () => {
     });
   }
 };
+
+export const loadRulesSuccess = (rules) => {
+  return {
+    type: ActionTypes.LOAD_RULES_SUCCESS,
+    rules
+  };
+};
+
+
+export const loadRules = () => {
+  return (dispatch, getState) => {
+    return RuleAPI.getAllRules().then((snapshot) => {
+      console.log("Snapshot ====>",snapshot.data);
+      dispatch(loadRulesSuccess(snapshot.data));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+}

@@ -1,0 +1,1 @@
+export const LOAD_RULES_SUCCESS = 'LOAD_RULES_SUCCESS';
