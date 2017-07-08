@@ -120,6 +120,16 @@ export var startAddEmployees = () => {
   }
 };
 
+export var loadEmplyeesForOrganization = (organizationDid) => {
+  return (dispatch, getState) => {
+    return EmployeeAPI.getEmployeesByOrganization(organizationDid).then((snapshot) => {
+      dispatch(addEmployees(snapshot.data));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+};
+
 export const loadRulesSuccess = (rules) => {
   return {
     type: ActionTypes.LOAD_RULES_SUCCESS,

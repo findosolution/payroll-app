@@ -19,7 +19,7 @@ router.get('/:id?',function(req,res,next){
        });
 
    } else {
-
+     var organizationDid = req.query.orgId;
      Employee.getAllEmployees(function(err,rows){
 
         if(err)
@@ -29,7 +29,7 @@ router.get('/:id?',function(req,res,next){
             res.json(rows);
         }
 
-      });
+      }, organizationDid);
    }
  });
  router.post('/',function(req,res,next){

@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {hashHistory} from 'react-router';
+
 import * as actions from 'actions';
+
 
 export class OrganizationDetail extends React.Component {
   constructor (props) {
     super(props);
+
+    this.manageOrganizationEmployees = this.manageOrganizationEmployees.bind(this);
   }
 
   componentDidMount() {
@@ -13,6 +17,12 @@ export class OrganizationDetail extends React.Component {
     if(!selectedOrganization) {
       dispatch(actions.setSelectedOrganizationFromAPI(this.props.location.query.id));
     }
+  }
+
+  manageOrganizationEmployees () {
+    var { selectedOrganization } = this.props;
+    let url = `/employee?orgId=${selectedOrganization.did}`;
+    hashHistory.push(url);
   }
 
   render() {
@@ -28,7 +38,7 @@ export class OrganizationDetail extends React.Component {
           <label>Address :</label><label>{address}</label>
           <label>Contact :</label><label>{selectedOrganization.mobile}</label>
           <label>Email :</label><label>{selectedOrganization.email}</label>
-          <button type="button" className="button button-margin" onClick={() => this.setEmployees() }>Employees</button>
+          <button type="button" className="button button-margin" onClick={() => this.manageOrganizationEmployees() }>Manage Employees</button>
       </div>
     );
   }

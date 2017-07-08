@@ -35,7 +35,6 @@ export var employeeReducer = (state = [], action) => {
   switch(action.type) {
     case 'ADD_EMPLOYEES':
       return [
-        ...state,
         ...action.employees
       ];
       default:

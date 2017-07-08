@@ -18,8 +18,24 @@ var EmployeeAPI = {
     }, function (res) {
       throw new Error(res.message);
     });
-  }
+  },
+  getEmployeesByOrganization : (organizationDid) => {
+    var requestUrl =`${ROOT_URL}emp-api`;
 
+    if(organizationDid) {
+      requestUrl =`${requestUrl}?$orgId=${organizationDid}`;
+    }
+
+    return axios.get(requestUrl).then(function(res){
+      if(res.cod && res.cod !=200 && res.message) {
+        throw new Error(res.message);
+      }else {
+        return res;
+      }
+    }, function (res) {
+      throw new Error(res.message);
+    });
+  }
 };
 
 module.exports = EmployeeAPI;

@@ -11,8 +11,13 @@ export class EmployeeList extends React.Component {
   }
 
   componentDidMount() {
-    var {dispatch} = this.props;
-    dispatch(actions.startAddEmployees());
+    var {dispatch, selectedOrganization} = this.props;
+    console.log('selectedOrganization :' , selectedOrganization.did);
+    if(selectedOrganization) {
+      dispatch(actions.loadEmplyeesForOrganization(selectedOrganization.did))
+    } else {
+      dispatch(actions.startAddEmployees());
+    }
   }
 
   render () {
@@ -53,6 +58,7 @@ export class EmployeeList extends React.Component {
 export default connect((state) => {
   console.log(state);
   return {
-    employees : state.employees
+    employees : state.employees,
+    selectedOrganization: state.selectedOrganization
   };
 })(EmployeeList);
