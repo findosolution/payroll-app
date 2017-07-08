@@ -12,7 +12,7 @@ export class EmployeeList extends React.Component {
 
   componentDidMount() {
     var {dispatch, selectedOrganization} = this.props;
-    console.log('selectedOrganization :' , selectedOrganization.did);
+    //console.log('selectedOrganization :' , selectedOrganization.did);
     if(selectedOrganization) {
       dispatch(actions.loadEmplyeesForOrganization(selectedOrganization.did))
     } else {
