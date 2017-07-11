@@ -44,10 +44,6 @@ export class OrganizationDetail extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setSelectedOrganizationFromAPI }, dispatch);
-}
-
 export default connect((state) => {
   return {
     selectedOrganization: state.selectedOrganization

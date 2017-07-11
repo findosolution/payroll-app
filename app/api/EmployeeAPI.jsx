@@ -23,9 +23,9 @@ var EmployeeAPI = {
     var requestUrl =`${ROOT_URL}emp-api`;
 
     if(organizationDid) {
-      requestUrl =`${requestUrl}?$orgId=${organizationDid}`;
+      requestUrl =`${requestUrl}?orgId=${organizationDid}`;
     }
-
+    console.log('requestUrl:', requestUrl)
     return axios.get(requestUrl).then(function(res){
       if(res.cod && res.cod !=200 && res.message) {
         throw new Error(res.message);
