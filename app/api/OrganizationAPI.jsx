@@ -43,5 +43,18 @@ module.exports = {
     }, function (res) {
       throw new Error(res.message);
     });
-  }
+  },
+  getOrganizationByDid: function (did) {
+    var requestUrl = `${ROOT_URL}orgs/${did}`;
+
+    return axios.get(requestUrl).then(function (res) {
+      if (res.cod && res.cod != 200 && res.message) {
+        throw new Error(res.message);
+      } else {
+        return res;
+      }
+    }, function (res) {
+      throw new Error(res.message);
+    });
+  },
 }

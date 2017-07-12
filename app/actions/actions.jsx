@@ -1,5 +1,7 @@
 import * as OrganizationAPI from 'OrganizationAPI';
 import * as EmployeeAPI from 'EmployeeAPI';
+import * as RuleAPI from 'RuleAPI';
+import * as ActionTypes from '../constants/actionTypes';
 
 export var setSearchOrganization = (searchOrganization) => {
   return {
@@ -88,6 +90,17 @@ export var setSelectedOrganization = (organization) => {
   };
 }
 
+export var setSelectedOrganizationFromAPI = (did) => {
+  return (dispatch, getState) => {
+    return OrganizationAPI.getOrganizationByDid(did).then((snapshot) => {
+      console.log(snapshot.data);
+      dispatch(setSelectedOrganization(snapshot.data[0]));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+};
+
 export var addEmployees = (employees) => {
   return {
     type: 'ADD_EMPLOYEES',
@@ -124,3 +137,31 @@ export var startAddEmployee = (employee) => {
     });
   });
 };
+
+export var loadEmplyeesForOrganization = (organizationDid) => {
+  return (dispatch, getState) => {
+    return EmployeeAPI.getEmployeesByOrganization(organizationDid).then((snapshot) => {
+      dispatch(addEmployees(snapshot.data));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+};
+
+export const loadRulesSuccess = (rules) => {
+  return {
+    type: ActionTypes.LOAD_RULES_SUCCESS,
+    rules
+  };
+};
+
+export const loadRules = () => {
+  return (dispatch, getState) => {
+    return RuleAPI.getAllRules().then((snapshot) => {
+      console.log("Snapshot ====>",snapshot.data);
+      dispatch(loadRulesSuccess(snapshot.data));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+}

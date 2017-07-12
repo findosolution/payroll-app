@@ -14,12 +14,12 @@ export class Organization extends React.Component {
   setSelectedOrganization() {
     var {organization, dispatch} = this.props;
     dispatch(actions.setSelectedOrganization(organization));
-    let url = `/organizationDetail`;
+    let url = `/organizationDetail?id=${organization.did}`;
     hashHistory.push(url);
   }
 
   render() {
-    var {organization} = this.props;
+    var {organization, dispatch} = this.props;
     var address = `${organization.address1}, ${organization.country}`;
 
     return(

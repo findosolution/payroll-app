@@ -8,6 +8,8 @@ var cors=require('cors');
 //var users = require('./routes/users');
 var Organizations=require('./service/routes/Organizations');
 var Employee = require('./service/routes/Employee');
+var Rule = require('./service/routes/Rules');
+
 
 var express = require('express');
 
@@ -25,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/users', users);
 app.use('/orgs',Organizations);
 app.use('/emp-api', Employee);
+app.use('/rules', Rule);
 
 const PORT = process.env.PORT || 3000;
 

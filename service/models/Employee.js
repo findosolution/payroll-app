@@ -2,12 +2,14 @@ var db=require('../../dbconnection'); //reference of dbconnection.js
 
 var Employee = {
 
-  getAllEmployees : function(callback) {
+  getAllEmployees : function(callback, organizationDid) {
 
-      var sql = "Select * from employee emp";
-      var contact = {};
+      var sql = "Select * from employee emp ";
+      if(organizationDid) {
+        sql = `${sql} where organization = ?`;
+      }
 
-      db.query(sql,function (err, result){
+      db.query(sql, [organizationDid], function (err, result){
 
         if (err) {
             throw err;
@@ -44,5 +46,7 @@ var Employee = {
     });
   }
 }
+
+
 
 module.exports = Employee;
