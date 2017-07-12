@@ -11,17 +11,20 @@ export class EmployeeList extends React.Component {
   }
 
   componentDidMount() {
+    console.log("component did mount");
     var {dispatch} = this.props;
     dispatch(actions.startAddEmployees());
   }
 
   render () {
     var renderEmployees = () => {
-      var {employees, organizations} = this.props;
+      var {employees} = this.props;
+
+      console.log("employee length ==>" , employees.length)
 
       return employees.map((employee) => {
      return (
-        <Employee key={employee.did} {...employee} viewEmployee={this.props.viewEmployee1} />
+        <Employee key={employee.did} employee={employee} />
       );
     });
 
@@ -51,7 +54,7 @@ export class EmployeeList extends React.Component {
 };
 
 export default connect((state) => {
-  console.log(state);
+
   return {
     employees : state.employees
   };

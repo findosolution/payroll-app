@@ -53,11 +53,10 @@ export var startAddOrganization = (organization) => {
     }
 
     return OrganizationAPI.saveOrganization(organizationTobeSave).then((snapshot) => {
-      console.log(snapshot);
+
       dispatch(addOrganization({
         ...organization,
-        did: snapshot.data.orgdid,
-        addressdid: snapshot.data.addressdid
+
       }));
     }, (e) => {
       console.log('Unable to save Organization');
@@ -99,10 +98,29 @@ export var addEmployees = (employees) => {
 export var startAddEmployees = () => {
   return (dispatch, getState) => {
     return EmployeeAPI.getAllEmployees().then((snapshot) => {
-      console.log("Snapshot ====>",snapshot.data);
       dispatch(addEmployees(snapshot.data));
     }, (e) => {
       console.log('Unable to get data');
     });
   }
+};
+
+export var addEmployee = (employee) => {
+  return {
+    type: 'ADD_EMPLOYEE',
+    employee
+  };
+};
+
+export var startAddEmployee = (employee) => {
+  return ((dispatch, getState) => {
+    return EmployeeAPI.saveEmployee(employee).then((snapshot) => {
+      console.log(snapshot.data);
+      dispatch(addEmployee({
+        ...employee
+      }));
+    }, (e) => {
+      console.log('Unable to save employee');
+    });
+  });
 };

@@ -4,7 +4,7 @@ import EmployeeSearch from './EmployeeSearch';
 import EmployeeList from './EmployeeList';
 import AddEmployeeModal from './AddEmployeeModal';
 import ViewEmployeeModal from './ViewEmployeeModal';
-
+import * as actions from 'actions';
 
 export default class EmployeeApp extends React.Component {
 
@@ -28,9 +28,11 @@ export default class EmployeeApp extends React.Component {
   }
 
   _hideEmployeeModal(){
+
     this.setState({
         showAddModal:false
     });
+
   }
 
   _viewEmployee(){
@@ -56,9 +58,9 @@ export default class EmployeeApp extends React.Component {
             <button type="button" className="button button-margin" >Delete</button>
           </div>
         </div>
-         <EmployeeList viewEmployee={this._viewEmployee}/>
+        <EmployeeList/>
 
-           {
+            {
               (this.state.showAddModal)?<AddEmployeeModal handleClose={this._hideEmployeeModal}/>:null
             }
 

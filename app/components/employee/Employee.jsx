@@ -1,22 +1,23 @@
 import React from 'react';
+var {connect} = require('react-redux');
 
-export default class Employee extends React.Component {
+export class Employee extends React.Component {
   render() {
-    var {did,empId, firstName, lastName, organization, department, empCategory} = this.props;
+    var {employee} = this.props;
 
     return(
-            <tr onClick={() => this.props.viewOrganization() }>
+            <tr>
               <td>
-              <input id={did} type="checkbox" />
-            </td>
-
-              <td>{empId}</td>
-              <td>{firstName}</td>
-              <td>{lastName}</td>
-              <td>{organization}</td>
-              <td>{department}</td>
-              <td>{empCategory}</td>
+                <input id={employee.did} type="checkbox" />
+              </td>
+              <td>{employee.empId}</td>
+              <td>{employee.firstName}</td>
+              <td>{employee.lastName}</td>
+              <td>{employee.organization}</td>
+              <td>{employee.department}</td>
+              <td>{employee.empCategory}</td>
             </tr>
     );
   }
 };
+export default connect() (Employee);

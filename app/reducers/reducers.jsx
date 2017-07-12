@@ -37,6 +37,11 @@ export var employeeReducer = (state = [], action) => {
         ...state,
         ...action.employees
       ];
+    case 'ADD_EMPLOYEE':
+      return [
+        ...state,
+        action.employee
+      ];
       default:
         return state;
   };

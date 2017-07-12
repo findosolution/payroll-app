@@ -18,7 +18,22 @@ var EmployeeAPI = {
     }, function (res) {
       throw new Error(res.message);
     });
+  },
+
+  saveEmployee : function (employee) {
+    var requestUrl =`${ROOT_URL}emp-api/`;
+
+    return axios.post(requestUrl, employee).then(function(res){
+      if(res.cod && res.cod !=200 && res.message) {
+        throw new Error(res.message);
+      }else {
+        return res;
+      }
+    }, function (res) {
+      throw new Error(res.message);
+    });
   }
+
 
 };
 

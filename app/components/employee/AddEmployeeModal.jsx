@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 var {connect} = require('react-redux');
-
 import * as actions from 'actions';
 
 
@@ -38,13 +37,37 @@ class AddEmployeeModal extends React.Component{
   constructor(props,context){
     super(props,context);
 
-    this.state ={
+    this.state = {
       modalIsOpen:true
     }
   //  this.handeSubmit = this.handeSubmit.bind(this);
   }
 
   handleSubmit (e) {
+    e.preventDefault();
+    var {dispatch} = this.props;
+    var empId = this.refs.empID.value;
+
+    if(empId !== "") {
+
+      var employee = {
+        "empId": this.refs.empID.value,
+    	  "firstName" : "Prasad",
+    	  "lastName": "Wanigasinghe",
+        "organization": 1,
+        "department":"IT",
+        "empCategory":"Permenant",
+        "empRole":"developer",
+        "bankAccountNumber":"123321123321",
+        "subscribed":true
+      }
+
+      dispatch(actions.startAddEmployee(employee));
+      this.props.handleClose();
+    } else {
+      this.refs.empID.focus();
+    }
+
   }
 
   onClose() {
