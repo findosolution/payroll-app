@@ -19,6 +19,8 @@ export class RuleList extends React.Component {
   render () {
     let renderRules = () => {
       let {rules} = this.props;
+      console.log("^^^^^ RULES ^^^^^");
+      console.log(rules);
       return rules.map((rule) => {
         return (
           <Rule key={rule.id} {...rule}  />

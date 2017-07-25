@@ -2,17 +2,16 @@ import React from 'react';
 
 export default class Rule extends React.Component {
   render() {
-    var {did, name, address1, country, mobile, email} = this.props;
-    var address = `${address1}, ${country}`;
+    var {id,grp, organization, rule, value, type} = this.props;
     return(
             <tr onClick={() => this.props.viewRule() }>
               <td>
-                <input id={did} type="checkbox" />
+                <input id={id} type="checkbox" />
               </td>
-              <td>{name}</td>
-              <td>{address}</td>
-              <td>{mobile}</td>
-              <td>{email}</td>
+              <td>{rule}</td>
+              <td>{grp}</td>
+              <td>{organization}</td>
+              <td>{value}</td>
             </tr>
     );
   }
