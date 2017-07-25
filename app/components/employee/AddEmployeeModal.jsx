@@ -43,9 +43,15 @@ class AddEmployeeModal extends React.Component{
   //  this.handeSubmit = this.handeSubmit.bind(this);
   }
 
+  makeOthers(adddeductstatus, description, amount) {
+    this.adddeductstatus = adddeductstatus;
+    this.description = description;
+    this.amount = amount;
+  }
+
   handleSubmit (e) {
     e.preventDefault();
-    var {dispatch} = this.props;
+    var {dispatch, selectedOrganization} = this.props;
     var empId = this.refs.empID.value;
     var basicSalary = this.refs.basic.value;
 
@@ -55,18 +61,34 @@ class AddEmployeeModal extends React.Component{
         "empId": this.refs.empID.value,
     	  "firstName" : "Prasad",
     	  "lastName": "Wanigasinghe",
-        "organization": 1,
+        "organization": selectedOrganization.did,
         "department":"IT",
         "empCategory":"Permenant",
         "empRole":"developer",
         "bankAccountNumber":"123321123321",
         "subscribed":true
       }
+      var employeeSalaryContents = [];
+      var additionCount = 1;
+      var deductionCount = 1;
 
       if(basicSalary && basicSalary.length > 0) {
-        // add salary and save
+        employeeSalaryContents.push(new makeOthers(0,"basic salary",basicSalary));
+
+        for(i = 0; i < additionCount; i++) {
+          employeeSalaryContents.push(new makeOthers(1,
+            this.refs.aditionName_1.value,
+            this.refs.aditionAmount_1.value));
+        }
+
+        for(i = 0; i < deductionCount; i++) {
+          employeeSalaryContents.push(new makeOthers(2,
+            this.refs.deductionName_1.value,
+            this.refs.deductionAmount_1.value));
+        }
       }
 
+      employee.salaryContent = employeeSalaryContents;
       dispatch(actions.startAddEmployee(employee));
       this.props.handleClose();
     } else {
@@ -106,12 +128,12 @@ class AddEmployeeModal extends React.Component{
                       <div class="row" id="addition_1">
                         <div class="small-12 medium-6 columns">
                           <label>Name
-                            <input type="text" id="aditionName_1" placeholder="Addition name"/>
+                            <input type="text" id="aditionName_1" ref="aditionName_1" placeholder="Addition name"/>
                           </label>
                         </div>
                         <div class="small-12 medium-6 columns">
                           <label>Amount
-                            <input type="text" id="aditionAmount_1" placeholder="Addition amount"/>
+                            <input type="text" id="aditionAmount_1" ref="aditionAmount_1" placeholder="Addition amount"/>
                           </label>
                         </div>
                       </div>
@@ -124,12 +146,12 @@ class AddEmployeeModal extends React.Component{
                       <div class="row" id="deduction_1">
                         <div class="small-12 medium-6 columns">
                           <label>Name
-                            <input type="text" id="deductionName_1" placeholder="Deduction name"/>
+                            <input type="text" id="deductionName_1" ref="deductionName_1" placeholder="Deduction name"/>
                           </label>
                         </div>
                         <div class="small-12 medium-6 columns">
                           <label>Amount
-                            <input type="text" id="deductionAmount_1" placeholder="Deduction amount"/>
+                            <input type="text" id="deductionAmount_1" ref="deductionAmount_1" placeholder="Deduction amount"/>
                           </label>
                         </div>
                       </div>
@@ -151,4 +173,8 @@ AddEmployeeModal.propTypes = {
 
 }
 
-export default connect()(AddEmployeeModal);
+export default connect((state) => {
+  return {
+    selectedOrganization: state.selectedOrganization
+  };
+})(AddEmployeeModal);

@@ -127,8 +127,11 @@ export var addEmployee = (employee) => {
 
 export var startAddEmployee = (employee) => {
   return ((dispatch, getState) => {
+    var salaryContents = employee.salaryContent;
+    delete employee.salaryContent;
     return EmployeeAPI.saveEmployee(employee).then((snapshot) => {
-      console.log(snapshot.data);
+      console.log('Employee :',snapshot.data);
+      employee.did = snapshot.data.insertId
       dispatch(addEmployee({
         ...employee
       }));

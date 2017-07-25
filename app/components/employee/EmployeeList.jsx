@@ -57,7 +57,6 @@ export class EmployeeList extends React.Component {
 };
 
 export default connect((state) => {
-
   return {
     employees : state.employees,
     selectedOrganization: state.selectedOrganization
