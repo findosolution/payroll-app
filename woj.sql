@@ -273,3 +273,40 @@ ALTER TABLE `organization`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+------------- 2017-08-10---------------------
+CREATE TABLE `rule_type` (
+  `did` bigint(20) PRIMARY KEY,
+  `type` varchar(100) NOT NULL COMMENT '1-PERCENTAGE, 2-AMOUNT, 3-BOOLEAN'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `rule_type` (`did`, `type`) VALUES
+('1', 'PERCENTAGE'),
+('2', 'AMOUNT'),
+('3', 'BOOLEAN');
+
+CREATE TABLE `rule` (
+  `did` bigint(20) PRIMARY KEY,
+  `rule` varchar(100) NOT NULL,
+  `type` bigint(20) NOT NULL,
+  `adjustment` varchar(100) NOT NULL COMMENT '1-INCREASE, 2-DECREASE'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `rule` (`did`, `rule`,`type`,`adjustment`) VALUES
+('1', 'EPF','1','INCREASE'),
+('2', 'BONUS','2','INCREASE');
+
+CREATE TABLE `organization_rule` (
+  `did` bigint(20) PRIMARY KEY,
+  `organization` bigint(20) NOT NULL,
+  `group` bigint(20) NOT NULL,
+  `rule` bigint(20) NOT NULL,
+  `amount` double NOT NULL,
+  `precedance` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `organization_rule` (`did`, `organization`,`group`,`rule`,`amount`,`precedance`) VALUES
+('1', '16','1','1','20','8'),
+('2', '16','1','2','75000','8');
