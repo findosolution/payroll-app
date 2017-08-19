@@ -168,3 +168,27 @@ export const loadRules = () => {
     });
   }
 }
+
+
+export const startAddRule = (rule) => {
+  return ((dispatch, getState) => {
+    return RuleAPI.saveRule(rule).then((snapshot) => {
+      // console.log('Rule :',snapshot.data);
+      // rule.did = snapshot.data.insertId;
+      // dispatch(addRule({
+      //   ...rule
+      // }));
+      dispatch(loadRules());
+    }, (e) => {
+      console.log('Unable to save rule');
+    });
+  });
+};
+
+
+export const addRule = (rule) => {
+  return {
+    type: 'ADD_RULE',
+    rule
+  };
+};

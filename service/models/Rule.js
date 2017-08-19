@@ -7,17 +7,17 @@ var Rule = {
       var sql =  `Select
                     r.rule,
                     cr.organization,
-                    cr.emp_group as grp,
-                    cr.value,
+                    cr.group as grp,
+                    cr.amount,
                     rt.type,
-                    cr.id
+                    cr.did
                   from
-                    company_rule cr
+                    organization_rule cr
                     join rule r
                     join rule_type rt
                   where
-                    cr.rule = r.id
-                    and r.type = rt.id `;
+                    cr.rule = r.did
+                    and r.type = rt.did `;
       var contact = {};
 
       db.query(sql,function (err, result){
@@ -28,6 +28,33 @@ var Rule = {
 
       return callback(result);
 
+    });
+  },
+
+  addRule:function(Rule,callback){
+
+    db.beginTransaction(function(err) {
+
+      if (err) { throw err; }
+
+      db.query('Insert into organization_rule SET ?',Rule, function(err, result) {
+         if (err) {
+           db.rollback(function() {
+             throw err;
+           });
+         }
+
+         db.commit(function(err) {
+           if (err) {
+             db.rollback(function() {
+               throw err;
+             });
+           }
+         });
+
+         return callback(result);
+
+       });
     });
   }
 }

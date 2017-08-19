@@ -46,28 +46,17 @@ class AddRuleModal extends React.Component{
 
   handleSubmit (e) {
     e.preventDefault();
-    var orgName = this.refs.orgname.value;
+    let {dispatch} = this.props;
+    let Rule = {
+      organization: this.refs.organization.value,
+      group: this.refs.group.value,
+      rule: this.refs.rule.value,
+      amount: this.refs.amount.value,
+      precedance:8
+    };
 
-    if(orgName.length > 0) {
-      var {dispatch} = this.props;
-      var Rule = {
-        name: orgName,
-        code: "DEdF",
-        active: 1,
-        addresstypedid: "1",
-        address1: this.refs.orgaddress.value,
-        postalcode: 0,
-        city: "",
-        country: "Sri Lanka",
-        email: this.refs.orgemail.value,
-        mobile: this.refs.orgcontact.value
-      };
-
-      dispatch(actions.startAddRule(Rule));
-      this.props.handleClose();
-    } else {
-      this.refs.orgname.focus();
-    }
+    dispatch(actions.startAddRule(Rule));
+    this.props.handleClose();
   }
 
   onClose() {
@@ -80,11 +69,11 @@ class AddRuleModal extends React.Component{
         <Modal isOpen={this.state.modalIsOpen} contentLabel="Add Rule" style={this.customStyle}>
           <div>
             <form ref="form" onSubmit={this.handleSubmit.bind(this)}>
-              <h1 className="page-title">Create company</h1>
-              <label>Name :</label><input type="text" ref="orgname" placeholder="Company name"/>
-              <label>Address :</label><input type="text" ref="orgaddress" placeholder="Company address"/>
-              <label>Contact :</label><input type="text" ref="orgcontact" placeholder="Company contact"/>
-              <label>Email :</label><input type="text" ref="orgemail" placeholder="Company email"/>
+              <h1 className="page-title">Create Rule</h1>
+              <label>Organization :</label><input type="text" ref="organization" placeholder="Organization"/>
+              <label>Group :</label><input type="text" ref="group" placeholder="Group"/>
+              <label>Rule :</label><input type="text" ref="rule" placeholder="Rule"/>
+              <label>Amount :</label><input type="text" ref="amount" placeholder="Amount"/>
               <button type="submit" className="button button-margin">Create</button>
               <button type="button" className="button button-margin" onClick={this.onClose.bind(this)}>Close</button>
             </form>

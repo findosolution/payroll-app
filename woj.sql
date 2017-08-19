@@ -278,7 +278,7 @@ ALTER TABLE `organization`
 
 ------------- 2017-08-10---------------------
 CREATE TABLE `rule_type` (
-  `did` bigint(20) PRIMARY KEY,
+  `did` bigint(20) PRIMARY KEY AUTO_INCREMENT,
   `type` varchar(100) NOT NULL COMMENT '1-PERCENTAGE, 2-AMOUNT, 3-BOOLEAN'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -288,7 +288,7 @@ INSERT INTO `rule_type` (`did`, `type`) VALUES
 ('3', 'BOOLEAN');
 
 CREATE TABLE `rule` (
-  `did` bigint(20) PRIMARY KEY,
+  `did` bigint(20) PRIMARY KEY AUTO_INCREMENT,
   `rule` varchar(100) NOT NULL,
   `type` bigint(20) NOT NULL,
   `adjustment` varchar(100) NOT NULL COMMENT '1-INCREASE, 2-DECREASE'
@@ -299,7 +299,7 @@ INSERT INTO `rule` (`did`, `rule`,`type`,`adjustment`) VALUES
 ('2', 'BONUS','2','INCREASE');
 
 CREATE TABLE `organization_rule` (
-  `did` bigint(20) PRIMARY KEY,
+  `did` bigint(20) PRIMARY KEY AUTO_INCREMENT,
   `organization` bigint(20) NOT NULL,
   `group` bigint(20) NOT NULL,
   `rule` bigint(20) NOT NULL,

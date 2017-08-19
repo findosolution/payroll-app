@@ -60,8 +60,12 @@ export const ruleReducer = (state = [], action) => {
   switch(action.type) {
     case ActionTypes.LOAD_RULES_SUCCESS:
       return [
-        ...state,
         ...action.rules
+      ];
+    case ActionTypes.ADD_RULE:
+      return [
+        ...state,
+        action.rule
       ];
     default:
       return state;

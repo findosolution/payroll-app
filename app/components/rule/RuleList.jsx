@@ -33,10 +33,10 @@ export class RuleList extends React.Component {
           <thead>
             <tr>
               <th></th>
-              <th>Rule</th>
+              <th>Organization</th>
               <th>Group</th>
-              <th>Org</th>
-              <th>Val</th>
+              <th>Rule</th>
+              <th>Value</th>
             </tr>
           </thead>
           <tbody>
