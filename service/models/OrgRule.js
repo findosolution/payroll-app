@@ -1,16 +1,23 @@
 var db=require('../../dbconnection'); //reference of dbconnection.js
 
-var Rule = {
+var OrgRule = {
 
   getAllRules : function(callback) {
 
       var sql =  `Select
-                    r.did as did,
-                    r.rule as rule,
-                    r.type as type,
-                    r.adjustment as adjustment
+                    r.rule,
+                    cr.organization,
+                    cr.group as grp,
+                    cr.amount,
+                    rt.type,
+                    cr.did
                   from
-                    rule r`;
+                    organization_rule cr
+                    join rule r
+                    join rule_type rt
+                  where
+                    cr.rule = r.did
+                    and r.type = rt.did `;
       var contact = {};
 
       db.query(sql,function (err, result){
@@ -52,4 +59,4 @@ var Rule = {
   }
 }
 
-module.exports = Rule;
+module.exports = OrgRule;

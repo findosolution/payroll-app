@@ -1,3 +1,5 @@
-export const LOAD_RULES_SUCCESS = 'LOAD_RULES_SUCCESS';
+export const LOAD_ORG_RULES_SUCCESS = 'LOAD_ORG_RULES_SUCCESS';
 
-export const ADD_RULE = 'ADD_RULE';
+export const ADD_ORG_RULE = 'ADD_ORG_RULE';
+
+export const LOAD_RULES_SUCCESS = 'LOAD_RULES_SUCCESS';

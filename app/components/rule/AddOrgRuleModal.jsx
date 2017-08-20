@@ -7,7 +7,7 @@ var {connect} = require('react-redux');
 import * as actions from 'actions';
 
 
-class AddRuleModal extends React.Component{
+class AddOrgRuleModal extends React.Component{
 
   customStyle = {
     overlay : {
@@ -44,18 +44,27 @@ class AddRuleModal extends React.Component{
   //  this.handeSubmit = this.handeSubmit.bind(this);
   }
 
+  componentDidMount(){
+    this._loadRules();
+  }
+
+  _loadRules(){
+    let {dispatch} = this.props;
+    dispatch(actions.loadRules());
+  }
+
   handleSubmit (e) {
     e.preventDefault();
     let {dispatch} = this.props;
-    let Rule = {
-      organization: this.refs.organization.value,
+    let OrgRule = {
+      organization: 16,
       group: this.refs.group.value,
       rule: this.refs.rule.value,
       amount: this.refs.amount.value,
       precedance:8
     };
 
-    dispatch(actions.startAddRule(Rule));
+    dispatch(actions.startAddOrgRule(OrgRule));
     this.props.handleClose();
   }
 
@@ -66,13 +75,18 @@ class AddRuleModal extends React.Component{
   render(){
     return(
       <div>
-        <Modal isOpen={this.state.modalIsOpen} contentLabel="Add Rule" style={this.customStyle}>
+        <Modal isOpen={this.state.modalIsOpen} contentLabel="Add Organization Rule" style={this.customStyle}>
           <div>
             <form ref="form" onSubmit={this.handleSubmit.bind(this)}>
-              <h1 className="page-title">Create Rule</h1>
-              <label>Organization :</label><input type="text" ref="organization" placeholder="Organization"/>
+              <h1 className="page-title">Create Organization Rule</h1>
+              <label>Organization :</label>
+              <input type="text" ref="organization" placeholder="Organization"/>
               <label>Group :</label><input type="text" ref="group" placeholder="Group"/>
-              <label>Rule :</label><input type="text" ref="rule" placeholder="Rule"/>
+              <label>Rule :</label>
+              <select>
+                <option></option>
+              </select>
+              <input type="text" ref="rule" placeholder="Rule"/>
               <label>Amount :</label><input type="text" ref="amount" placeholder="Amount"/>
               <button type="submit" className="button button-margin">Create</button>
               <button type="button" className="button button-margin" onClick={this.onClose.bind(this)}>Close</button>
@@ -85,8 +99,8 @@ class AddRuleModal extends React.Component{
 
 }
 
-AddRuleModal.propTypes = {
+AddOrgRuleModal.propTypes = {
 
 }
 
-export default connect()(AddRuleModal);
+export default connect()(AddOrgRuleModal);

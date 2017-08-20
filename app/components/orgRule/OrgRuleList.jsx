@@ -2,28 +2,28 @@ import React from 'react';
 var {connect} = require('react-redux');
 
 import * as actions from 'actions';
-import Rule from './Rule';
-import * as RuleAPI from 'RuleAPI';
-import * as RuleUtil from 'RuleUtil';
+import OrgRule from './OrgRule';
+import * as OrgRuleAPI from 'OrgRuleAPI';
+import * as OrgRuleUtil from 'OrgRuleUtil';
 
-export class RuleList extends React.Component {
+export class OrgRuleList extends React.Component {
   constructor (props) {
     super(props);
   }
 
   componentDidMount() {
     var {dispatch} = this.props;
-    dispatch(actions.loadRules());
+    dispatch(actions.loadOrgRules());
   }
 
   render () {
     let renderRules = () => {
-      let {rules} = this.props;
-      console.log("^^^^^ RULES ^^^^^");
-      console.log(rules);
-      return rules.map((rule) => {
+      let {orgRules} = this.props;
+      console.log("^^^^^ ORG RULES ^^^^^");
+      console.log(orgRules);
+      return orgRules.map((orgRule) => {
         return (
-          <Rule key={rule.id} {...rule}  />
+          <OrgRule key={orgRule.id} {...orgRule}  />
         );
       });
     };
@@ -33,10 +33,10 @@ export class RuleList extends React.Component {
           <thead>
             <tr>
               <th></th>
-              <th>Organization</th>
               <th>Group</th>
               <th>Rule</th>
-              <th>Value</th>
+              <th>Amount</th>
+              <th>Type</th>
             </tr>
           </thead>
           <tbody>
@@ -50,7 +50,7 @@ export class RuleList extends React.Component {
 
 export default connect((state) => {
   return {
-    rules: state.rules,
-    searchRule: state.searchRule
+    orgRules: state.orgRules,
+    searchOrgRule: state.searchOrgRule
   };
-})(RuleList);
+})(OrgRuleList);

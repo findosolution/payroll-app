@@ -1,5 +1,6 @@
 import * as OrganizationAPI from 'OrganizationAPI';
 import * as EmployeeAPI from 'EmployeeAPI';
+import * as OrgRuleAPI from 'OrgRuleAPI';
 import * as RuleAPI from 'RuleAPI';
 import * as ActionTypes from '../constants/actionTypes';
 
@@ -151,12 +152,23 @@ export var loadEmplyeesForOrganization = (organizationDid) => {
   }
 };
 
-export const loadRulesSuccess = (rules) => {
+export const loadOrgRulesSuccess = (orgRules) => {
   return {
-    type: ActionTypes.LOAD_RULES_SUCCESS,
-    rules
+    type: ActionTypes.LOAD_ORG_RULES_SUCCESS,
+    orgRules
   };
 };
+
+export const loadOrgRules = () => {
+  return (dispatch, getState) => {
+    return OrgRuleAPI.getAllOrgRules().then((snapshot) => {
+      console.log("Snapshot ====>",snapshot.data);
+      dispatch(loadOrgRulesSuccess(snapshot.data));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+}
 
 export const loadRules = () => {
   return (dispatch, getState) => {
@@ -169,26 +181,33 @@ export const loadRules = () => {
   }
 }
 
+export const loadRulesSuccess = (rules) => {
+  return {
+    type: ActionTypes.LOAD_RULES_SUCCESS,
+    rules
+  };
+};
 
-export const startAddRule = (rule) => {
+
+export const startAddOrgRule = (OrgRule) => {
   return ((dispatch, getState) => {
-    return RuleAPI.saveRule(rule).then((snapshot) => {
+    return RuleAPI.saveRule(OrgRule).then((snapshot) => {
       // console.log('Rule :',snapshot.data);
       // rule.did = snapshot.data.insertId;
       // dispatch(addRule({
       //   ...rule
       // }));
-      dispatch(loadRules());
+      dispatch(loadOrgRules());
     }, (e) => {
-      console.log('Unable to save rule');
+      console.log('Unable to save OrgRule');
     });
   });
 };
 
 
-export const addRule = (rule) => {
+export const addOrgRule = (OrgRule) => {
   return {
-    type: 'ADD_RULE',
-    rule
+    type: 'ADD_ORG_RULE',
+    OrgRule
   };
 };

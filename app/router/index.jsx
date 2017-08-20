@@ -3,7 +3,7 @@ import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
 import OrganizationApp from 'organization/OrganizationApp';
 import OrganizationDetail from 'organization/OrganizationDetail';
-import RuleApp from 'rule/RuleApp';
+import OrgRuleApp from 'orgRule/OrgRuleApp';
 
 import User from 'User';
 import Login from 'Login';
@@ -17,7 +17,7 @@ export default (
       <IndexRoute component={Login}/>
       <Route path="/main" component={Main} >
         <Route path="/organizations" component={OrganizationApp}/>
-        <Route path="rule" component={RuleApp} />
+        <Route path="orgRule" component={OrgRuleApp} />
         <Route path="user" component={User}/>
         <Route path="/employee" component={EmployeeApp}/>
         <Route path="/organizationDetail" component={OrganizationDetail}/>

@@ -56,6 +56,22 @@ export var selectedOrganizationReducer = (state = null, action) => {
   };
 };
 
+export const orgRuleReducer = (state = [], action) => {
+  switch(action.type) {
+    case ActionTypes.LOAD_ORG_RULES_SUCCESS:
+      return [
+        ...action.orgRules
+      ];
+    case ActionTypes.ADD_ORG_RULE:
+      return [
+        ...state,
+        action.orgRule
+      ];
+    default:
+      return state;
+  };
+};
+
 export const ruleReducer = (state = [], action) => {
   switch(action.type) {
     case ActionTypes.LOAD_RULES_SUCCESS:
