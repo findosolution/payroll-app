@@ -34,6 +34,20 @@ var OrgRuleAPI = {
     });
   },
 
+  removeOrgRule: function (did) {
+    var requestUrl = `${ROOT_URL}orgRules/${did}`;
+
+    return axios.delete(requestUrl).then(function (res) {
+      if (res.cod && res.cod != 200 && res.message) {
+        throw new Error(res.message);
+      } else {
+        return res;
+      }
+    }, function (res) {
+      throw new Error(res.message);
+    });
+  },
+
 };
 
 module.exports = OrgRuleAPI;

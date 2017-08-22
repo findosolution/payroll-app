@@ -1,12 +1,20 @@
 import React from 'react';
+import * as actions from 'actions';
+var {connect} = require('react-redux');
 
-export default class OrgRule extends React.Component {
+
+export  class OrgRule extends React.Component {
   render() {
-    var {id,grp, rule, amount, type} = this.props;
+    var {did,grp, rule, amount, type} = this.props;
+    var {dispatch} = this.props;
     return(
-            <tr onClick={() => this.props.viewRule() }>
+
+            <tr>
+            {/*<tr onClick={() => this.props.viewRule() }>*/}
               <td>
-                <input id={id} type="checkbox" />
+                <button type="button" id={did}
+                  className="button small success button-margin"
+                  onClick={() => dispatch(actions.startRemoveOrgRule(did))}>Remove</button>
               </td>
               <td>{grp}</td>
               <td>{rule}</td>
@@ -16,3 +24,5 @@ export default class OrgRule extends React.Component {
     );
   }
 };
+
+export default connect()(OrgRule);

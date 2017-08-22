@@ -191,7 +191,7 @@ export const loadRulesSuccess = (rules) => {
 
 export const startAddOrgRule = (OrgRule) => {
   return ((dispatch, getState) => {
-    return RuleAPI.saveRule(OrgRule).then((snapshot) => {
+    return OrgRuleAPI.saveOrgRule(OrgRule).then((snapshot) => {
       // console.log('Rule :',snapshot.data);
       // rule.did = snapshot.data.insertId;
       // dispatch(addRule({
@@ -209,5 +209,15 @@ export const addOrgRule = (OrgRule) => {
   return {
     type: 'ADD_ORG_RULE',
     OrgRule
+  };
+};
+
+export const startRemoveOrgRule = (did) => {
+  return (dispatch, getState) => {
+    return OrgRuleAPI.removeOrgRule(did).then((snapshot) => {
+      dispatch(loadOrgRules());
+    }, (e) => {
+      console.log('Unable to delete Rule');
+    });
   };
 };

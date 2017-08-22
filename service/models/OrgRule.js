@@ -56,7 +56,12 @@ var OrgRule = {
 
        });
     });
-  }
+  },
+
+
+  deleteRule:function(did,callback){
+    return db.query("delete from organization_rule where did=?",[did],callback);
+  },
 }
 
 module.exports = OrgRule;
