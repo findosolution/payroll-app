@@ -98,7 +98,7 @@ router.get('/:empId/salaryContent/:contentId?', (req, res, next) => {
 
 router.post('/:empId/salaryContent/', (req, res, next) => {
   if(req.params.empId) {
-    EmployeeSalaryContent.addContent(req.params.empId, req.body, (err, count) => {
+    EmployeeSalaryContent.addContents(req.params.empId, req.body, (err, count) => {
       if(err) {
         res.json(err);
       } else {

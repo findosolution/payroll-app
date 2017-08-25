@@ -12,6 +12,11 @@ export class EmployeeList extends React.Component {
 
   componentDidMount() {
     var {dispatch, selectedOrganization} = this.props;
+
+    if(!selectedOrganization && this.props.location.query.orgId) {
+      dispatch(actions.setSelectedOrganizationFromAPI(this.props.location.query.orgId));
+    }
+
     if(selectedOrganization) {
       console.log('selectedOrganization :' , selectedOrganization.did);
       dispatch(actions.loadEmplyeesForOrganization(selectedOrganization.did))

@@ -43,12 +43,6 @@ class AddEmployeeModal extends React.Component{
   //  this.handeSubmit = this.handeSubmit.bind(this);
   }
 
-  makeOthers(adddeductstatus, description, amount) {
-    this.adddeductstatus = adddeductstatus;
-    this.description = description;
-    this.amount = amount;
-  }
-
   handleSubmit (e) {
     e.preventDefault();
     var {dispatch, selectedOrganization} = this.props;
@@ -73,23 +67,21 @@ class AddEmployeeModal extends React.Component{
       var deductionCount = 1;
 
       if(basicSalary && basicSalary.length > 0) {
-        employeeSalaryContents.push(new makeOthers(0,"basic salary",basicSalary));
+        employeeSalaryContents.push(new Array(0,"basic salary",basicSalary));
 
-        for(i = 0; i < additionCount; i++) {
-          employeeSalaryContents.push(new makeOthers(1,
+        for(var i = 0; i < additionCount; i++) {
+          employeeSalaryContents.push(new Array(1,
             this.refs.aditionName_1.value,
             this.refs.aditionAmount_1.value));
         }
 
-        for(i = 0; i < deductionCount; i++) {
-          employeeSalaryContents.push(new makeOthers(2,
+        for(var i = 0; i < deductionCount; i++) {
+          employeeSalaryContents.push(new Array(2,
             this.refs.deductionName_1.value,
             this.refs.deductionAmount_1.value));
         }
       }
-
-      employee.salaryContent = employeeSalaryContents;
-      dispatch(actions.startAddEmployee(employee));
+      dispatch(actions.startAddEmployee(employee, employeeSalaryContents));
       this.props.handleClose();
     } else {
       this.refs.empID.focus();

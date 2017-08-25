@@ -26,22 +26,24 @@ var EmployeeSalaryContent = {
       return callback(result);
     });
   },
-  addContent : (empId, emplyeeSalary, callback) => {
+  addContents : (empId, emplyeeSalaries, callback) => {
     db.beginTransaction( (err) => {
-
+      console.log("emplyeeSalaries :", emplyeeSalaries);
       if (err) { throw err };
-      var sql = "insert into emplyeesalary SET ? ";
-      db.query(sql, [emplyeeSalary], (err, result) => {
+
+      emplyeeSalaries.forEach((contents) => {
+        contents.push(empId, null, null);
+      });
+
+      var sql = "insert into emplyeesalary (adddeductstatus, amount, description, employee, validfrom, validuntil) VALUES ? ";
+      db.query(sql, [emplyeeSalaries], (err, result) => {
          if (err) { db.rollback(() => { throw err}) };
 
          db.commit((err) => {
            if (err) { db.rollback(() => { throw err }) };
          });
-
-         emplyeeSalary.did = result.insertId;
-         return callback(emplyeeSalary);
-
        });
+       return callback(emplyeeSalaries);
     });
   },
   deleteContent : (empId, callback) => {

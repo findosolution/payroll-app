@@ -1,5 +1,6 @@
 import * as OrganizationAPI from 'OrganizationAPI';
 import * as EmployeeAPI from 'EmployeeAPI';
+import * as EmployeeSalaryAPI from 'EmployeeSalaryAPI';
 import * as RuleAPI from 'RuleAPI';
 import * as ActionTypes from '../constants/actionTypes';
 
@@ -125,21 +126,42 @@ export var addEmployee = (employee) => {
   };
 };
 
-export var startAddEmployee = (employee) => {
+export var startAddEmployee = (employee, salaryContents) => {
   return ((dispatch, getState) => {
-    var salaryContents = employee.salaryContent;
-    delete employee.salaryContent;
+    debugger;
     return EmployeeAPI.saveEmployee(employee).then((snapshot) => {
       console.log('Employee :',snapshot.data);
       employee.did = snapshot.data.insertId;
+      dispatch(addSalaryContents(employee.did, salaryContents))
       dispatch(addEmployee({
         ...employee
       }));
+
     }, (e) => {
       console.log('Unable to save employee');
     });
   });
 };
+
+/*export var startAddEmployee = (employee) => {
+  return ((dispatch, getState) => {
+    debugger;
+    var salaryContents = employee.salaryContent;
+    delete employee.salaryContent;
+
+    return EmployeeAPI.saveEmployee(employee).then((snapshot) => {
+      console.log('Employee :',snapshot.data);
+      employee.did = snapshot.data.insertId;
+      let ee= employee.did;
+      let sc = salaryContents;
+      return {ee,sc}
+    }, (e) => {
+      console.log('Unable to save employee');
+    }).then((ff) => {
+      dispatch(addSalaryContents(ff.ee, ff.sc));
+    });
+  });
+};*/
 
 export var loadEmplyeesForOrganization = (organizationDid) => {
   return (dispatch, getState) => {
@@ -149,6 +171,21 @@ export var loadEmplyeesForOrganization = (organizationDid) => {
       console.log('Unable to get data');
     });
   }
+};
+
+export var addSalaryContents = (did,salaryContents) => {
+  return ((dispatch, getState) => {
+    return EmployeeSalaryAPI.saveContentsByEmployee(did,salaryContents).then((snapshot) => {
+      console.log('SalaryContents :', snapshot.data);
+      //employee.did = snapshot.data.insertId;
+      /*dispatch(addEmployee({
+        ...employee
+      }));*/
+
+    }, (e) => {
+      console.log('Unable to save salaryContents');
+    });
+  });
 };
 
 export const loadRulesSuccess = (rules) => {
