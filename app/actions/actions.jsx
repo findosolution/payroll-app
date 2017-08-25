@@ -1,6 +1,10 @@
 import * as OrganizationAPI from 'OrganizationAPI';
 import * as EmployeeAPI from 'EmployeeAPI';
+<<<<<<< HEAD
 import * as EmployeeSalaryAPI from 'EmployeeSalaryAPI';
+=======
+import * as OrgRuleAPI from 'OrgRuleAPI';
+>>>>>>> 9ffd3bda520f2f2aa3d1b5922acdc25c16b37a56
 import * as RuleAPI from 'RuleAPI';
 import * as ActionTypes from '../constants/actionTypes';
 
@@ -188,12 +192,23 @@ export var addSalaryContents = (did,salaryContents) => {
   });
 };
 
-export const loadRulesSuccess = (rules) => {
+export const loadOrgRulesSuccess = (orgRules) => {
   return {
-    type: ActionTypes.LOAD_RULES_SUCCESS,
-    rules
+    type: ActionTypes.LOAD_ORG_RULES_SUCCESS,
+    orgRules
   };
 };
+
+export const loadOrgRules = () => {
+  return (dispatch, getState) => {
+    return OrgRuleAPI.getAllOrgRules().then((snapshot) => {
+      console.log("Snapshot ====>",snapshot.data);
+      dispatch(loadOrgRulesSuccess(snapshot.data));
+    }, (e) => {
+      console.log('Unable to get data');
+    });
+  }
+}
 
 export const loadRules = () => {
   return (dispatch, getState) => {
@@ -205,3 +220,44 @@ export const loadRules = () => {
     });
   }
 }
+
+export const loadRulesSuccess = (rules) => {
+  return {
+    type: ActionTypes.LOAD_RULES_SUCCESS,
+    rules
+  };
+};
+
+
+export const startAddOrgRule = (OrgRule) => {
+  return ((dispatch, getState) => {
+    return OrgRuleAPI.saveOrgRule(OrgRule).then((snapshot) => {
+      // console.log('Rule :',snapshot.data);
+      // rule.did = snapshot.data.insertId;
+      // dispatch(addRule({
+      //   ...rule
+      // }));
+      dispatch(loadOrgRules());
+    }, (e) => {
+      console.log('Unable to save OrgRule');
+    });
+  });
+};
+
+
+export const addOrgRule = (OrgRule) => {
+  return {
+    type: 'ADD_ORG_RULE',
+    OrgRule
+  };
+};
+
+export const startRemoveOrgRule = (did) => {
+  return (dispatch, getState) => {
+    return OrgRuleAPI.removeOrgRule(did).then((snapshot) => {
+      dispatch(loadOrgRules());
+    }, (e) => {
+      console.log('Unable to delete Rule');
+    });
+  };
+};

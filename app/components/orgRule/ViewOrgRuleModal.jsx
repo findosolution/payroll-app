@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 
 
-class ViewRuleModal extends React.Component{
+class ViewOrgRuleModal extends React.Component{
 
   constructor(props,context){
     super(props,context);
@@ -35,8 +35,8 @@ class ViewRuleModal extends React.Component{
 
 }
 
-ViewRuleModal.propTypes = {
+ViewOrgRuleModal.propTypes = {
 
 }
 
-export default ViewRuleModal;
+export default ViewOrgRuleModal;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Rule extends React.Component {
+export default class OrgRule extends React.Component {
   render() {
     var {id,grp, organization, rule, value, type} = this.props;
     return(

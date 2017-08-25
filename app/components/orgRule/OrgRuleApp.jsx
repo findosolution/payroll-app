@@ -1,12 +1,12 @@
 import React from 'react';
 
-import RuleSearch from './RuleSearch';
-import RuleList from './RuleList';
-import AddRuleModal from './AddRuleModal';
-import ViewRuleModal from './ViewRuleModal';
+import OrgRuleSearch from './OrgRuleSearch';
+import OrgRuleList from './OrgRuleList';
+import AddOrgRuleModal from './AddOrgRuleModal';
+import ViewOrgRuleModal from './ViewOrgRuleModal';
 
 
-export default class RuleApp extends React.Component {
+export default class OrgRuleApp extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -49,21 +49,21 @@ export default class RuleApp extends React.Component {
         </div>
         <div className="row">
           <div className="large-6 columns">
-            <RuleSearch/>
+            <OrgRuleSearch/>
           </div>
           <div className="large-3 large-offset-3 columns">
             <button type="button" className="button button-margin" onClick={() => this._addRule()}>Add</button>
             <button type="button" className="button button-margin" >Delete</button>
           </div>
         </div>
-        <RuleList viewRule={this._viewRule}/>
+        <OrgRuleList viewRule={this._viewRule}/>
 
         {
-          (this.state.showAddModal)?<AddRuleModal handleClose={this._hideRuleModal}/>:null
+          (this.state.showAddModal)?<AddOrgRuleModal handleClose={this._hideRuleModal}/>:null
         }
 
         {
-          (this.state.showViewModal)?<ViewRuleModal />:null
+          (this.state.showViewModal)?<ViewOrgRuleModal />:null
         }
 
       </div>

@@ -3,15 +3,15 @@ import {connect} from 'react-redux';
 
 import * as actions from 'actions';
 
-export class RuleSearch extends React.Component {
+export class OrgRuleSearch extends React.Component {
   render () {
-    var {dispatch, searchRule} = this.props;
+    var {dispatch, searchOrgRule} = this.props;
     return(
       <div className="container__header">
         <div className="row">
           <div className="large-10 column">
-          <input type="search" ref="searchRule" value={searchRule} placeholder="Search Rule" onChange={() => {
-              dispatch(actions.setSearchRule(this.refs.searchRule.value));
+          <input type="search" ref="searchRule" value={searchOrgRule} placeholder="Search Rule" onChange={() => {
+              dispatch(actions.setSearchOrgRule(this.refs.searchRule.value));
             }}/>
         </div>
         <div className="large-2 columns">
@@ -26,6 +26,6 @@ export class RuleSearch extends React.Component {
 
 export default connect((state) => {
   return {
-    searchRule: state.searchRule
+    searchOrgRule: state.searchOrgRule
   };
-})(RuleSearch);
+})(OrgRuleSearch);
