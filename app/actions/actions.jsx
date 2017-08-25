@@ -1,10 +1,7 @@
 import * as OrganizationAPI from 'OrganizationAPI';
 import * as EmployeeAPI from 'EmployeeAPI';
-<<<<<<< HEAD
 import * as EmployeeSalaryAPI from 'EmployeeSalaryAPI';
-=======
 import * as OrgRuleAPI from 'OrgRuleAPI';
->>>>>>> 9ffd3bda520f2f2aa3d1b5922acdc25c16b37a56
 import * as RuleAPI from 'RuleAPI';
 import * as ActionTypes from '../constants/actionTypes';
 
